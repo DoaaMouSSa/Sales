@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>G:\work_sales\Acc_Sys_5_Api\Acc_Sys_5_Api\bin\Release\net5.0\publish\</_PublishTargetUrl>
+    <History>True|2022-03-09T17:55:51.6466751Z;</History>
+  </PropertyGroup>
+</Project>

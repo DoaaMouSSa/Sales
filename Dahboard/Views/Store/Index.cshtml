@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" id="containerStore">
+            <div class="box-header">
+                <h3 class="box-title">المخازن</h3>
+                <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal">اضافه</button>
+            </div><!-- /.box-header -->
+            <!-- Modal For Add -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">اضافه مخزن</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" id="store_name" />
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" onclick="AddStore();">حفظ</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!----------------------------------------------------->
+            <!-----end modal for Add-->
+            <div class="box-body">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>تعديل</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="store_data">
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>End</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/Store/AddStore.js"></script>
+<script src="~/js/Store/StoreIndex.js"></script>

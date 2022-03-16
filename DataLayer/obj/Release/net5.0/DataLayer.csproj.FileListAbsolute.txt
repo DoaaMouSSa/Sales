@@ -1,0 +1,15 @@
+G:\work_sales\Acc_Sys_5_Api\DataLayer\bin\Release\net5.0\DataLayer.deps.json
+G:\work_sales\Acc_Sys_5_Api\DataLayer\bin\Release\net5.0\DataLayer.runtimeconfig.json
+G:\work_sales\Acc_Sys_5_Api\DataLayer\bin\Release\net5.0\DataLayer.runtimeconfig.dev.json
+G:\work_sales\Acc_Sys_5_Api\DataLayer\bin\Release\net5.0\DataLayer.dll
+G:\work_sales\Acc_Sys_5_Api\DataLayer\bin\Release\net5.0\ref\DataLayer.dll
+G:\work_sales\Acc_Sys_5_Api\DataLayer\bin\Release\net5.0\DataLayer.pdb
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.csproj.AssemblyReference.cache
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.GeneratedMSBuildEditorConfig.editorconfig
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.AssemblyInfoInputs.cache
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.AssemblyInfo.cs
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.csproj.CoreCompileInputs.cache
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.dll
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\ref\DataLayer.dll
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.pdb
+G:\work_sales\Acc_Sys_5_Api\DataLayer\obj\Release\net5.0\DataLayer.genruntimeconfig.cache

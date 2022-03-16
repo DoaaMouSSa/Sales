@@ -1,0 +1,12 @@
+G:\work_sales\Acc_Sys_5_Api\Dto\bin\Release\net5.0\Dto.deps.json
+G:\work_sales\Acc_Sys_5_Api\Dto\bin\Release\net5.0\Dto.dll
+G:\work_sales\Acc_Sys_5_Api\Dto\bin\Release\net5.0\ref\Dto.dll
+G:\work_sales\Acc_Sys_5_Api\Dto\bin\Release\net5.0\Dto.pdb
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\Dto.csproj.AssemblyReference.cache
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\Dto.GeneratedMSBuildEditorConfig.editorconfig
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\Dto.AssemblyInfoInputs.cache
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\Dto.AssemblyInfo.cs
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\Dto.csproj.CoreCompileInputs.cache
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\Dto.dll
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\ref\Dto.dll
+G:\work_sales\Acc_Sys_5_Api\Dto\obj\Release\net5.0\Dto.pdb
