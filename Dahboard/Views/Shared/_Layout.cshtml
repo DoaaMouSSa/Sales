@@ -310,12 +310,11 @@
                         <a href="#"><i class="fa fa-circle text-success"></i>أون لاين</a>
                     </div>
                 </div>
-     
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li>
-                        <a asp-controller="Dashboard" 
-                                 asp-action="Index">
+                        <a asp-controller="Dashboard"
+                           asp-action="Index">
                             <i class="fa fa-dashboard"></i> <span>الرئيسيه</span>
                         </a>
                     </li>
@@ -338,16 +337,36 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-dashboard"></i> <span>مبيعات/مشتريات/مخزون</span> <i class="fa fa-angle-left pull-left"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li>
+                                <a asp-controller="purchase"
+                                   asp-action="Index"><i class="fa fa-circle-o"></i>مشتريات</a>
+                            </li>
+                            <li>    
+                                <a asp-controller="test"
+                                   asp-action="Index"><i class="fa fa-shopping-cart"></i>مرتجع مشتريات</a>
+                            </li>
+                            <li>
+                                <a asp-controller="test"
+                                   asp-action="Index"><i class="fa fa-gears"></i>مبيعات</a>
+                            </li>
+                            <li>
+                                <a asp-controller="test"
+                                   asp-action="Index"><i class="fa fa-gears"></i>مرتجع مبيعات</a>
+                            </li>
+                        </ul>
+                    </li>
+
                 </ul>
             </section>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-    
-      
-
             <!-- Main content -->
             <section class="content">
                 @RenderBody()
@@ -359,8 +378,6 @@
             </div>
             <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
         </footer>
-
-       
         <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
     <!-- jQuery 2.1.4 -->
