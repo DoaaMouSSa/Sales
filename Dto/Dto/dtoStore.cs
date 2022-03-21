@@ -10,5 +10,15 @@ namespace Dto.Dto
     {
         public int id { get; set; }
         public string store_name { get; set; }
+       
+    }
+    public class dtoStoreDetails
+    {
+        public int id { get; set; }
+        public int product_id { get; set; }
+        public int qty { get; set; }    
+        public int store_id { get; set; }
+
     }
 }
+

@@ -7,6 +7,7 @@
 
     if (value != null) {
         $('#filter_product_data').empty();
+        $('#filter_product_data_purchase').empty();
         $.ajax({
             url: "https://localhost:44315/api/ProductSearch/SearchByBarCode",
             type: 'GET',
@@ -22,6 +23,8 @@
                 for (var i = 0; i < result.length; i++) {
                     var row = result[i];
                     $('#filter_product_data').append("<tr><td>" + row.product_name + "</td><td>" + row.code + "</td><td>" + row.barcode + "</td><td>" + row.purchase_price + "</td><td>" + row.sale_price + "</td></tr>");
+                    $('#filter_product_data_purchase').append("<tr><td>" + row.product_name + "</td><td>" + row.code + "</td><td>" + row.barcode + "</td><td>" + row.purchase_price + "</td><td>" + row.sale_price + "</td></tr>");
+
                 }
             }, complete: function () {
                 //$("#").css("visibility", "hidden");

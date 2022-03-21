@@ -44,7 +44,7 @@ namespace Acc_Sys_5_Api
             services.AddScoped<IProuductRepository, ProductRepository>();
             services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
             services.AddScoped<IStoreRepository, StoreRepository>();
-
+            services.AddScoped<IPurchaseRepository, PurchaseRepository>();
             #endregion
         }
 
