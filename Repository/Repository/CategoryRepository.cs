@@ -73,13 +73,12 @@ namespace Repository.Repository
         public List<dtoCategory> Read()
         {
             var allcat = (from c in db.tblCategory
-                          select
- new dtoCategory()
- {
-     id = c.id,
-     cat_name = c.cat_name
- }).ToList();
-            return allcat;
+                          select new dtoCategory()
+                                       {
+                                      id = c.id,
+                                      cat_name = c.cat_name
+                                      }).ToList();
+                                          return allcat;
         }
 
         public string ReadExcelFile()

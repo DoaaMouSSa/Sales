@@ -1,16 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataLayer.Tables
+namespace Dto.Dto
 {
-    public class TblStore
+   public class DtoWholePurchase
     {
         public int id { get; set; }
-        public string store_name { get; set; }
+        public float total { get; set; }
     }
 }
-

@@ -28,8 +28,8 @@ namespace Repository.Repository
                 };
                 db.tblStore.Add(newStore);
                 db.SaveChanges();
-                dto.id = dto.id;
-                dto.store_name = dto.store_name;
+                dto.id = newStore.id;
+                dto.store_name = newStore.store_name;
             }
             return dto;
         }

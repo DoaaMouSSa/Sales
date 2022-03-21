@@ -4,14 +4,16 @@ using DataLayer.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    partial class AccountDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220317080731_timeTblpurchase")]
+    partial class timeTblpurchase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -66,30 +68,7 @@ namespace DataLayer.Migrations
                     b.ToTable("tblProduct");
                 });
 
-            modelBuilder.Entity("DataLayer.Tables.TblPurchaseInvoice", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<DateTime>("purchase_Added_Time")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("store_id")
-                        .HasColumnType("int");
-
-                    b.Property<float>("total")
-                        .HasColumnType("real");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("store_id");
-
-                    b.ToTable("tblPurchase");
-                });
-
-            modelBuilder.Entity("DataLayer.Tables.TblPurchaseInvoiceDetails", b =>
+            modelBuilder.Entity("DataLayer.Tables.TblPurchase", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -103,13 +82,16 @@ namespace DataLayer.Migrations
                     b.Property<int>("product_id")
                         .HasColumnType("int");
 
-                    b.Property<int>("purchase_inv_id")
-                        .HasColumnType("int");
+                    b.Property<DateTime>("purchase_Added_Time")
+                        .HasColumnType("datetime2");
 
                     b.Property<float>("purchase_price_one_product")
                         .HasColumnType("real");
 
                     b.Property<int>("qty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("store_id")
                         .HasColumnType("int");
 
                     b.Property<float>("total_purchase_price_one_product")
@@ -119,9 +101,9 @@ namespace DataLayer.Migrations
 
                     b.HasIndex("product_id");
 
-                    b.HasIndex("purchase_inv_id");
+                    b.HasIndex("store_id");
 
-                    b.ToTable("tblPurchaseDetails");
+                    b.ToTable("tblPurchase");
                 });
 
             modelBuilder.Entity("DataLayer.Tables.TblStore", b =>
@@ -137,31 +119,6 @@ namespace DataLayer.Migrations
                     b.HasKey("id");
 
                     b.ToTable("tblStore");
-                });
-
-            modelBuilder.Entity("DataLayer.Tables.TblStoreDetails", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("product_id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("qty")
-                        .HasColumnType("int");
-
-                    b.Property<int>("store_id")
-                        .HasColumnType("int");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("product_id");
-
-                    b.HasIndex("store_id");
-
-                    b.ToTable("tblStoreDetails");
                 });
 
             modelBuilder.Entity("DataLayer.Tables.TblSubCategory", b =>
@@ -213,37 +170,7 @@ namespace DataLayer.Migrations
                     b.Navigation("TblSubCategory");
                 });
 
-            modelBuilder.Entity("DataLayer.Tables.TblPurchaseInvoice", b =>
-                {
-                    b.HasOne("DataLayer.Tables.TblStore", "TblStore")
-                        .WithMany()
-                        .HasForeignKey("store_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TblStore");
-                });
-
-            modelBuilder.Entity("DataLayer.Tables.TblPurchaseInvoiceDetails", b =>
-                {
-                    b.HasOne("DataLayer.Tables.TblProduct", "TblProduct")
-                        .WithMany()
-                        .HasForeignKey("product_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DataLayer.Tables.TblPurchaseInvoice", "TblPurchaseInvoice")
-                        .WithMany("PurchaseInvoiceDetailsLst")
-                        .HasForeignKey("purchase_inv_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("TblProduct");
-
-                    b.Navigation("TblPurchaseInvoice");
-                });
-
-            modelBuilder.Entity("DataLayer.Tables.TblStoreDetails", b =>
+            modelBuilder.Entity("DataLayer.Tables.TblPurchase", b =>
                 {
                     b.HasOne("DataLayer.Tables.TblProduct", "TblProduct")
                         .WithMany()
@@ -274,11 +201,6 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Tables.TblCategory", b =>
                 {
                     b.Navigation("TblSubCategory");
-                });
-
-            modelBuilder.Entity("DataLayer.Tables.TblPurchaseInvoice", b =>
-                {
-                    b.Navigation("PurchaseInvoiceDetailsLst");
                 });
 
             modelBuilder.Entity("DataLayer.Tables.TblSubCategory", b =>

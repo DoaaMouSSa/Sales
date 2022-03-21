@@ -4,14 +4,16 @@ using DataLayer.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataLayer.Migrations
 {
     [DbContext(typeof(AccountDbContext))]
-    partial class AccountDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220321095025_purchasStoreDetailsTbls")]
+    partial class purchasStoreDetailsTbls
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -73,9 +75,6 @@ namespace DataLayer.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<DateTime>("purchase_Added_Time")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("store_id")
                         .HasColumnType("int");
 
@@ -102,6 +101,9 @@ namespace DataLayer.Migrations
 
                     b.Property<int>("product_id")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("purchase_Added_Time")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("purchase_inv_id")
                         .HasColumnType("int");
