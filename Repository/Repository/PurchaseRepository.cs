@@ -51,30 +51,27 @@ namespace Repository.Repository
                             };
                             db.Add(purchase_inv_details);
                             db.SaveChanges();
-                        }
-                        for (int x = 0; x < dto.purchase_store_details.Count(); x++)
-                        {
-                            var rowStore = dto.purchase_store_details[x];
+                           
                             var product_exist = db.tblStoreDetails.Where(s => s.store_id == dto.store_id
-                              && s.product_id == rowStore.product_id).FirstOrDefault();
+                              && s.product_id == row.product_id).FirstOrDefault();
                             if (product_exist == null)
                             {
                                 var store_details = new TblStoreDetails()
                                 {
-                                    product_id = rowStore.product_id,
-                                    qty = rowStore.qty,
+                                    product_id = row.product_id,
+                                    qty = row.qty,
                                     store_id = dto.store_id
                                 };
                                 db.Add(store_details);
                                 db.SaveChanges();
                             }
-                            else{
-                                product_exist.qty += rowStore.qty;
+                            else
+                            {
+                                product_exist.qty += row.qty;
                                 db.SaveChanges();
                             }
-                           
-                            
                         }
+                       
                         db.Database.CommitTransaction();
                         msg = "success";
                         

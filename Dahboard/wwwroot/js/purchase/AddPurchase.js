@@ -1,58 +1,54 @@
-﻿function AddPurchase() {
-    var tbody = $('purchaseTbl');
-    let products = [];
-    for (var i = 0; i < tbody.children().length; i++) {
-        let person = {
-            "id": 0,
-            "product_id": 4,
-            "qty": 5,
-            "purchase_price_one_product": 10,
-            "total_purchase_price_one_product": 50,
-            "purchase_inv_id": 0,
-            "notes": "testplus"
+﻿
+function AddPurchase() {
+    var totalPurchase = parseFloat($('tfoot th#purchaseTotalNum').text());
+    
+    var storeId = parseInt(document.getElementById("stores").value);
+    var products = [];  
+    var i = 0;
+    var t = document.getElementById('purchaseTbl');
+   
+    
+    $("#purchaseTbl tr").each(function () {
+
+        var productId = parseInt($(t.rows[i].cells[0]).text());
+        var productQty = parseInt($(t.rows[i].cells[2]).text());
+        var productPrice = parseFloat($(t.rows[i].cells[3]).text());
+        var productTotal = parseFloat($(t.rows[i].cells[4]).text());
+            var product = {
+                id: 0,
+                product_id: productId,
+                qty: productQty,
+                purchase_price_one_product: productPrice,
+                total_purchase_price_one_product: productTotal,
+                purchase_inv_id: 0,
+                notes: "note"
         };
+        
+        products.push(product);
+     i++;
+    });
+   
+   
+    var formData = {
+        id: 0,
+        invoice_total: totalPurchase,
+        store_id: storeId,
+        purchase_Added_Time: Date.now,
+        purchase_invoice_details:
+            products,
     }
-    //var c = $("#cat_name").val().trim();
-    //var formData
-    //    =
-    //{
-    //    "id": 0,
-    //    "invoice_total": 50,
-    //    "store_id": 4,
-    //    "purchase_Added_Time": "2022-03-21T13:30:28.189Z",
-    //    "purchase_invoice_details": [
-    //        {
-    //            "id": 0,
-    //            "product_id": 4,
-    //            "qty": 5,
-    //            "purchase_price_one_product": 10,
-    //            "total_purchase_price_one_product": 50,
-    //            "purchase_inv_id": 0,
-    //            "notes": "testplus"
-    //        }
-    //    ],
-    //    "purchase_store_details": [
-    //        {
-    //            "id": 0,
-    //            "product_id": 4,
-    //            "qty": 5,
-    //            "store_id": 4
-    //        }
-    //    ]
-    //}
-    //$.ajax({
-    //    type: 'POST',
-    //    url: "https://localhost:44315/api/Purchase/AddPurchase",
-    //    dataType: "json",
-    //    contentType: "application/json",
-    //    data: JSON.stringify(formData),
-    //    success: function () {
-    //        $('#exampleModal').modal('hide');
-    //        location.reload();
-    //    },
-    //    error: function () {
-    //        console.log('Fail!!!');
-    //    }
-    //});
+    $.ajax({
+        type: 'POST',
+        url: "https://localhost:44315/api/Purchase/AddPurchase",
+        dataType: "json",
+        contentType: "application/json",
+        data: JSON.stringify(formData),
+        success: function () {
+            alert('success');
+        },
+        error: function () {
+            //alert('fail');
+        }
+    });
 
 }

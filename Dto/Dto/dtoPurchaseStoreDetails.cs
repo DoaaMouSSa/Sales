@@ -13,6 +13,5 @@ namespace Dto.Dto
         public int store_id { get; set; }
         public DateTime purchase_Added_Time { get; set; }
         public List<dtoPurchaseForAdd> purchase_invoice_details { get; set; }
-        public List<dtoStoreDetails> purchase_store_details { get; set; }
     }
 }
