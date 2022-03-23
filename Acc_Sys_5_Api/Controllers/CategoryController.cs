@@ -34,10 +34,10 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("AddCategory")]
         [HttpPost]
-        public dtoCategory AddCat(dtoCategory dto)
+        public Response<dtoCategory> AddCat(dtoCategory dto)
         {
-         var newcat= categoryRepository.Add(dto);
-            return newcat;
+         var response= categoryRepository.Add(dto);
+            return response;
         }
         [Route("EditCategory")]
         [HttpPost]

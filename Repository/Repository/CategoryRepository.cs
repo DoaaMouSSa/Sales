@@ -24,21 +24,46 @@ namespace Repository.Repository
         {
             db = _db;
         }
-        public dtoCategory Add(dtoCategory cat)
+        public Response<dtoCategory> Add(dtoCategory cat)
         {
+            Response<dtoCategory> res = new Response<dtoCategory>();
             if (cat != null)
             {
-                var newcat = new TblCategory()
+                if(cat.cat_name != "")
                 {
-                    id = cat.id,
-                    cat_name = cat.cat_name
-                };
-                db.tblCategory.Add(newcat);
-                db.SaveChanges();
-                cat.id = newcat.id;
-                cat.cat_name = newcat.cat_name;
+                    if (db.tblCategory.Any(c => c.cat_name == cat.cat_name))
+                    {
+                        res.code = Static_Data.StaticApiStatus.ApiDuplicate.Code;
+                        res.status = Static_Data.StaticApiStatus.ApiDuplicate.Status;
+                        res.message = Static_Data.StaticApiStatus.ApiDuplicate.MessageAr;
+                    }
+                    else
+                    {
+                        var newcat = new TblCategory()
+                        {
+                            id = cat.id,
+                            cat_name = cat.cat_name
+                        };
+                        db.tblCategory.Add(newcat);
+                        db.SaveChanges();
+                        cat.id = newcat.id;
+                        cat.cat_name = newcat.cat_name;
+                        res.code = Static_Data.StaticApiStatus.ApiSaveSuccess.Code;
+                        res.status = Static_Data.StaticApiStatus.ApiSaveSuccess.Status;
+                        res.message = Static_Data.StaticApiStatus.ApiSaveSuccess.MessageAr;
+                    }
+                }
+                else
+                {
+                    res.code = Static_Data.StaticApiStatus.ApiRequired.Code;
+                    res.status = Static_Data.StaticApiStatus.ApiRequired.Status;
+                    res.message = Static_Data.StaticApiStatus.ApiRequired.MessageAr;
+                   
+                }
             }
-            return cat;
+            
+            
+            return res;
         }
 
         public bool Delete(int id)

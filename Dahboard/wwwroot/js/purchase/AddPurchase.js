@@ -6,8 +6,7 @@ function AddPurchase() {
     var products = [];  
     var i = 0;
     var t = document.getElementById('purchaseTbl');
-   
-    
+
     $("#purchaseTbl tr").each(function () {
 
         var productId = parseInt($(t.rows[i].cells[0]).text());
