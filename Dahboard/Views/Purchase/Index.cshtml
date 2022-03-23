@@ -101,10 +101,10 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary" id="btnPrintPurchaseInvoice" disabled>طباعه الفاتوره</button>
+                        <button  class="btn btn-primary" id="btnPrintPurchaseInvoice" disabled>طباعه الفاتوره</button>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary" id="btnGoToStore" disabled>تنفيذ</button>
+                        <button class="btn btn-primary" id="btnGoToStore" onclick="AddPurchase();" disabled>تنفيذ</button>
                     </div>
                   
                 </div>
@@ -125,9 +125,13 @@
                     </thead>
                     <tbody id="purchaseTbl">
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>End</th>
+                    <tfoot id="test">
+                        <tr class="hidden" id="purchaseTotalRow">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th>اجمالى المشتريات</th>
+                            <th id="purchaseTotalNum">0</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -144,3 +148,4 @@
 <script src="~/js/ProductSearch/ProductSearchCode.js"></script>
 <script src="~/js/ProductSearch/ProductSearchBarCode.js"></script>
 <script src="~/js/ProductSearch/ClearSearch.js"></script>
+<script src="~/js/purchase/AddPurchase.js"></script>
