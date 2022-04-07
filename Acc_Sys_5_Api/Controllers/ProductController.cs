@@ -20,13 +20,13 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("AddProduct")]
         [HttpPost]
-        public dtoProductForAdd AddProduct(dtoProductForAdd dto)
+        public Response<dtoProductForAdd> AddProduct(dtoProductForAdd dto)
         {
             var newPro = prouductRepository.Add(dto);
             return newPro;
         }
         [Route("EditProduct")]
-        [HttpPut]
+        [HttpPost]
         public dtoProductForAdd EditProduct(dtoProductForAdd dto)
         {
             var pro = prouductRepository.Edit(dto);

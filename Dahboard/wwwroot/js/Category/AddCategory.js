@@ -10,12 +10,14 @@
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (data) {
-               // $('#exampleModal').modal('hide');
-               // location.reload();
+            
                 if (data.payload == null) {
+                   
                     clearWarningMsg('#validCatName');
                     $('#validCatName').append(data.message);
                 } else {
+                   
+                    $('#exampleModal').modal('hide');
                     location.reload();
                 }
             },
@@ -30,6 +32,4 @@
     }
     }
 
-function clearWarningMsg(id) {
-    $(id).text('');   
-}
+

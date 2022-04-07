@@ -3,15 +3,12 @@
 *@
 @{
 }
-<link href="~/css/mainCss/main.css" />
 <div class="row">
     <div class="col-xs-12">
         <div class="box" id="ContainSubCat">
             <div class="box-header">
-                <h3 class="box-title cursor-pointer">التصنيف</h3>
-                <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal">اضافه</button>
-                @*<input id="inputExcel" type="file" accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" class="float-left" />
-                    <button id="btnExcel" class="btn btn-primary float-left">Convert</button>*@
+                <h3 class="box-title">التصنيف</h3>
+                <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal" autofocus>تصنيف جديد</button>
             </div><!-- /.box-header -->
             <!-- Modal For Add -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -24,8 +21,11 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <input type="text" class="form-control" id="sub_cat_name" />
+                            <label for="sub_cat_name">اسم التصنيف</label>
+                            <input onkeypress="" type="text" class="form-control" id="sub_cat_name" onkeydown="clearWarningMsg('#validSubCatName')" autofocus autocomplete="off" />
+                            <p class="text-danger" id="validSubCatName"></p>
                             <br />
+                            <label for="departments">القسم</label>
                             <select name="department" id="departments" class="form-control no-padding">
                                 <option value="0" id="0">بدون قسم</option>
                             </select>
@@ -65,3 +65,6 @@
 <script src="~/js/SubCat/SubCatIndex.js"></script>
 <script src="~/js/SubCat/LoadCategoriesToComboBox.js"></script>
 <script src="~/js/SubCat/AddSubCateogory.js"></script>
+<script src="~/js/HandleModal/getFocusElements.js"></script>
+    <script src="~/js/HandleModal/EnterPress.js"></script>
+    

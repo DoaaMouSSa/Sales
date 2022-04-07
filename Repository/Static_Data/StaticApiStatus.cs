@@ -53,5 +53,12 @@ namespace Repository.Static_Data
             public static string MessageEn = "field is Empty";
             public static string MessageAr = "لا يمكن ادخال بيان فارغ";
         }
+        public static class ApiStoreNoProduct
+        {
+            public static string Code = "empty-product";
+            public static string Status = "empty-product";
+            public static string MessageEn = "no product";
+            public static string MessageAr = "هذا الصنف غير متوفر بالمخزن";
+        }
     }
 }

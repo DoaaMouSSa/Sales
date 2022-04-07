@@ -43,10 +43,15 @@ function AddPurchase() {
         contentType: "application/json",
         data: JSON.stringify(formData),
         success: function () {
-            alert('success');
+            alert('test');
+           
         },
         error: function () {
-            //alert('fail');
+            $('#btnGoToStore').prop("disabled", true);
+            $("#message_confirm_purchase").append("تم تنفيذ عمليه الشراء بنجاح");
+            $("#purchaseTbl").empty();
+            $('tfoot th#purchaseTotalNum').text(0);
+
         }
     });
 

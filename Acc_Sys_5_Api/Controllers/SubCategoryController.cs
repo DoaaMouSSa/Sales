@@ -21,13 +21,13 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("AddSubCategory")]
         [HttpPost]
-        public dtoSubCategoryForAdd AddCat(dtoSubCategoryForAdd dto)
+        public Response<dtoSubCategoryForAdd> AddCat(dtoSubCategoryForAdd dto)
         {
             var newSubcat = subCategoryRepository.Add(dto);
             return newSubcat;
         }
         [Route("EditSubCategory")]
-        [HttpPut]
+        [HttpPost]
         public dtoSubCategoryForAdd EditCat(dtoSubCategoryForAdd dto)
         {
             var cat = subCategoryRepository.Edit(dto);

@@ -9,7 +9,7 @@ namespace IRepository.IRepository
 {
    public interface IProuductRepository
     {
-        public dtoProductForAdd Add(dtoProductForAdd dto);
+        public Response<dtoProductForAdd> Add(dtoProductForAdd dto);
         public dtoProductForAdd Edit(dtoProductForAdd dto);
         public bool Delete(int id);
         public List<dtoProductForShow> Read();

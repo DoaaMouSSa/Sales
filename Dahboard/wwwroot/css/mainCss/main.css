@@ -4,3 +4,12 @@
 .hand{
 /*    cursor:pointer!important;*/
 }
+.fayroz {
+    color: #12a19b;
+}
+.sidebar-menu li a .fa-angle-left {
+    margin-top:0px !important;
+}
+.bg-org {
+    background-color:#baa239;
+}

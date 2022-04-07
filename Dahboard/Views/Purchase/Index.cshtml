@@ -15,7 +15,7 @@
                     </div>
                     <div class="col-md-7">
                         <!---لاظهار شاشه المنتجات-->
-                        <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal">اضافه</button>
+                        <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal" autofocus>اضافه</button>
                         <!-- Modal For products search-->
                         <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog" role="document" style="width:1000px;">
@@ -29,10 +29,13 @@
                                     <div class="modal-body">
                                         <div class="row">
                                             <div class="col-md-4">
+                                                <label for="departments">القسم</label>
                                                 <select id="departments" class="form-control no-padding" onchange="FilterSubCat(this.value)">
+                                                    <option value="0">بدون قسم</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-4">
+                                                <label for="SubCatFilterPro">التصنيف</label>
                                                 <select id="SubCatFilterPro" class="form-control no-padding"></select>
                                             </div>
                                             <div class="col-md-4">
@@ -42,13 +45,16 @@
                                         <br />
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <input onkeyup="SearchByName(this.value)" type="text" class="form-control" id="product_name_box" placeholder="اسم الصنف" />
+                                                <label for="product_name_box">اسم الصنف</label>
+                                                <input onkeyup="SearchByName(this.value)" type="text" class="form-control" id="product_name_box" placeholder="اسم الصنف" autocomplete="off" />
                                             </div>
                                             <div class="col-md-4">
-                                                <input onkeyup="SearchByBarCode(this.value)" type="text" class="form-control" id="product_barcode_box" placeholder="الباركود" />
+                                                <label for="product_barcode_box">باركود الصنف</label>
+                                                <input onkeyup="SearchByBarCode(this.value)" type="number" class="form-control" id="product_barcode_box" placeholder="الباركود" autocomplete="off" />
                                             </div>
                                             <div class="col-md-4">
-                                                <input onkeyup="SearchByCode(this.value)" type="text" class="form-control" id="product_code_box" placeholder="الكود" />
+                                                <label for="product_code_box">كود الصنف</label>
+                                                <input onkeyup="SearchByCode(this.value)" type="text" class="form-control" id="product_code_box" placeholder="الكود" autocomplete="off" />
                                             </div>
                                         </div>
                                         <div class="row">
@@ -60,7 +66,6 @@
                                                             <th>الكود</th>
                                                             <th>الباركود</th>
                                                             <th>تكلفه السوقيه</th>
-                                                            <th>سعر البيع</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="filter_product_data_purchase">
@@ -105,6 +110,7 @@
                     </div>
                     <div class="col-md-2">
                         <button class="btn btn-primary" id="btnGoToStore" onclick="AddPurchase();" disabled>تنفيذ</button>
+                        <p class="text-success text-bold" id="message_confirm_purchase"></p>
                     </div>
                   
                 </div>
@@ -121,6 +127,7 @@
                             <th>الكميه</th>
                             <th>السعر</th>
                             <th>الاجمالى</th>
+                            <th>حذف</th>
                         </tr>
                     </thead>
                     <tbody id="purchaseTbl">
@@ -144,8 +151,8 @@
 <script src="~/js/Store/LoadStoreForComboBox.js"></script>
 <script src="~/js/SubCat/LoadCategoriesToComboBox.js"></script>
 <script src="~/js/SubCat/FilterSubCatByCat.js"></script>
-<script type="text/javascript" src="~/js/ProductSearch/ProductSearchName.js"></script>
-<script src="~/js/ProductSearch/ProductSearchCode.js"></script>
-<script src="~/js/ProductSearch/ProductSearchBarCode.js"></script>
 <script src="~/js/ProductSearch/ClearSearch.js"></script>
 <script src="~/js/purchase/AddPurchase.js"></script>
+<script src="~/js/purchase/SearchByBarCodeForPurchase.js"></script>
+<script src="~/js/purchase/SearchByNameForPurchase.js"></script>
+<script src="~/js/purchase/SearchByCodeForPurchase.js"></script>

@@ -17,32 +17,59 @@ namespace Repository.Repository
         {
             db = _db;
         }
-        public dtoProductForAdd Add(dtoProductForAdd dto)
+        public Response<dtoProductForAdd> Add(dtoProductForAdd dto)
         {
+            Response<dtoProductForAdd> res = new Response<dtoProductForAdd>();
+
             if (dto != null)
             {
-                var newPro = new TblProduct()
+                if (dto.product_name != "")
                 {
-                    id = dto.id,
-                    code = dto.code,
-                    barcode = dto.barcode,
-                    product_name=dto.product_name,
-                    purchase_price=dto.purchase_price,
-                    sale_price=dto.sale_price,
-                    sub_cat_id=dto.sub_cat_id
-                };
-                db.tblProduct.Add(newPro);
-                db.SaveChanges();
-                dto.id = newPro.id;
-                dto.code = newPro.code;
-                dto.barcode = newPro.barcode;
-                dto.product_name = newPro.product_name;
-                dto.purchase_price = newPro.purchase_price;
-                dto.sale_price = newPro.sale_price;
-                dto.sub_cat_id = newPro.sub_cat_id;
 
+                    if (db.tblProduct.Where(p => p.sub_cat_id == dto.sub_cat_id).Where(p=>p.code!="").Any(p => p.code == dto.code))
+
+                    {
+                        res.code = Static_Data.StaticApiStatus.ApiDuplicate.Code;
+                        res.status = Static_Data.StaticApiStatus.ApiDuplicate.Status;
+                        res.message = Static_Data.StaticApiStatus.ApiDuplicate.MessageAr;
+                    }
+                    else
+                    {
+                        var newPro = new TblProduct()
+                        {
+                            id = dto.id,
+                            code = dto.code,
+                            barcode = dto.barcode,
+                            product_name = dto.product_name,
+                            purchase_price = dto.purchase_price,
+                            sale_price = dto.sale_price,
+                            sub_cat_id = dto.sub_cat_id
+                        };
+                        db.tblProduct.Add(newPro);
+                        db.SaveChanges();
+                        dto.id = newPro.id;
+                        dto.code = newPro.code;
+                        dto.barcode = newPro.barcode;
+                        dto.product_name = newPro.product_name;
+                        dto.purchase_price = newPro.purchase_price;
+                        dto.sale_price = newPro.sale_price;
+                        dto.sub_cat_id = newPro.sub_cat_id;
+                        res.code = Static_Data.StaticApiStatus.ApiSaveSuccess.Code;
+                        res.status = Static_Data.StaticApiStatus.ApiSaveSuccess.Status;
+                        res.message = Static_Data.StaticApiStatus.ApiSaveSuccess.MessageAr;
+                        res.payload = dto;
+                    }
+                }
             }
-            return dto;
+            else
+            {
+                res.code = Static_Data.StaticApiStatus.ApiRequired.Code;
+                res.status = Static_Data.StaticApiStatus.ApiRequired.Status;
+                res.message = Static_Data.StaticApiStatus.ApiRequired.MessageAr;
+            }
+
+            
+            return res;
         }
 
         public bool Delete(int id)

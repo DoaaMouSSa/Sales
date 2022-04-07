@@ -19,6 +19,8 @@ namespace DataLayer.DBContext
         public DbSet<TblStore> tblStore { get; set; }
         public DbSet<TblPurchaseInvoiceDetails> tblPurchaseDetails { get; set; }
         public DbSet<TblPurchaseInvoice> tblPurchase { get; set; }
+        public DbSet<TblSalesInvoice> tblSales { get; set; }
+        public DbSet<TblSalesInvoiceDetails> tblSalesDetails { get; set; }
         public DbSet<TblStoreDetails> tblStoreDetails { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

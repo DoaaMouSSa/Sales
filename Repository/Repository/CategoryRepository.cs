@@ -51,6 +51,7 @@ namespace Repository.Repository
                         res.code = Static_Data.StaticApiStatus.ApiSaveSuccess.Code;
                         res.status = Static_Data.StaticApiStatus.ApiSaveSuccess.Status;
                         res.message = Static_Data.StaticApiStatus.ApiSaveSuccess.MessageAr;
+                        res.payload = cat;
                     }
                 }
                 else
