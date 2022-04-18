@@ -7,16 +7,23 @@
     <div class="col-xs-12">
         <div class="box" id="ContainProduct">
             <div class="box-header">
-                <h3 class="box-title cursor-pointer">الأصناف</h3>
-                <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal" autofocus>اضافه</button>
-                <a class="btn btn-primary float-md-right" onclick="LoadProducts();">ابدأ البحث</a>
-            </div><!-- /.box-header -->
+                <h3 class="text-center org">الأصناف</h3>
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn-org btn-block float-left" data-toggle="modal" data-target="#exampleModal" autofocus>اضافه</button>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-md-2">
+                        <a class="btn-green btn-block float-right text-center" onclick="LoadProducts();">ابدأ البحث</a>
+                    </div>
+                    </div>
+                </div><!-- /.box-header -->
             <!-- Modal For Add -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">اضافه صنف</h5>
+                            <h4 class="modal-title text-center org" id="exampleModalLabel">اضافه صنف</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -24,43 +31,43 @@
                         <div class="modal-body">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="SubCatsForComboBOx">التصنيف</label>
-                                    <select name="sub_cat" id="SubCatsForComboBOx" class="form-control no-padding">
+                                    <label for="SubCatsForComboBOx" class="fayroz">التصنيف</label>
+                                    <select name="sub_cat" id="SubCatsForComboBOx" class="form-control no-padding border-radius-5 border-fayroz">
                                     </select>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="product_name">اسم الصنف</label>
-                                    <input onkeydown="clearWarningMsg('#validProductName'), clearWarningMsg('#validProductCode')" type="text" class="form-control" id="product_name" placeholder="اسم الصنف" autocomplete="off" />
+                                    <label for="product_name" class="fayroz">اسم الصنف</label>
+                                    <input onkeydown="clearWarningMsg('#validProductName'), clearWarningMsg('#validProductCode')" type="text" class="form-control border-radius-5 border-fayroz" id="product_name" placeholder="اسم الصنف" autocomplete="off" />
                                     <p class="text-danger" id="validProductName"></p>
                                 </div>
                             </div>
                             <br />
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="product_code">الكود</label>
-                                    <input onkeydown="clearWarningMsg('#validProductName'), clearWarningMsg('#validProductCode')" type="text" class="form-control" id="product_code" placeholder="الكود" autocomplete="off" />
+                                    <label for="product_code" class="fayroz">الكود</label>
+                                    <input onkeydown="clearWarningMsg('#validProductName'), clearWarningMsg('#validProductCode')" type="text" class="form-control border-radius-5 border-fayroz" id="product_code" placeholder="الكود" autocomplete="off" />
                                     <p class="text-danger" id="validProductCode"></p>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="product_barcode">الباركود </label>
-                                    <input type="text" class="form-control" id="product_barcode" placeholder="الباركود" autocomplete="off" />
+                                    <label for="product_barcode" class="fayroz">الباركود </label>
+                                    <input type="text" class="form-control border-radius-5 border-fayroz" id="product_barcode" placeholder="الباركود" autocomplete="off" />
                                 </div>
                             </div>
                             <br />
                             <div class="row">
                                 <div class="col-md-6">
-                                    <label for="purchase_price">التكلفه السوقيه </label>
-                                    <input type="number" placeholder="التكلفه السوقيه" min="0" class="form-control" id="purchase_price" />
+                                    <label for="purchase_price" class="fayroz">التكلفه السوقيه </label>
+                                    <input type="number" placeholder="التكلفه السوقيه" min="0" class="form-control border-radius-5 border-fayroz" id="purchase_price" />
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="sale_price">سعر البيع </label>
-                                    <input type="number" placeholder="سعر البيع" min="0" class="form-control" id="sale_price" />
+                                    <label for="sale_price" class="fayroz">سعر البيع </label>
+                                    <input type="number" placeholder="سعر البيع" min="0" class="form-control border-radius-5 border-fayroz" id="sale_price" />
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="AddProduct();">حفظ</button>
+                            <button type="button" class="btn-org" onclick="AddProduct();">حفظ</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
                         </div>
                     </div>
@@ -69,12 +76,12 @@
             <!-----end modal for Add-->
             <div class="row">
                 <div class="col-md-4">
-                    <select id="departments" class="form-control no-padding" onchange="FilterSubCat(this.value)">
+                    <select id="departments" class="form-control no-padding text-center border-radius-5 border-fayroz" onchange="FilterSubCat(this.value)">
                         <option value="0">بدون قسم</option>
                     </select>
                 </div>
                 <div class="col-md-4">
-                    <select id="SubCatFilterPro" class="form-control no-padding"></select>
+                    <select id="SubCatFilterPro" class="form-control no-padding text-center border-radius-5 border-fayroz"></select>
                 </div>
                 <div class="col-md-4">
                     <button onclick="resetSearch();" class="btn btn-success">clear search</button>
@@ -82,16 +89,27 @@
             </div>
             <br />
             <div class="row">
-                <div class="col-md-4">
-                    <input onkeyup="SearchByName(this.value)" type="text" class="form-control" id="product_name_box" placeholder="اسم الصنف" autocomplete="off" />
+                
+                <div class="col-md-1 padding-left-0 width-7p5">
+                    <h5 class="deep-fayroz">اسم الصنف</h5>
                 </div>
-                <div class="col-md-4">
-                    <input onkeyup="SearchByBarCode(this.value)" onchange="SearchByBarCode(this.value)" type="number" class="form-control" id="product_barcode_box" placeholder="الباركود" autocomplete="off" />
+                <div class="col-md-3 padding-left-0">
+                    <input type="text" id="product_name_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByName()" />
                 </div>
-                <div class="col-md-4">
-                    <input onkeyup="SearchByCode(this.value)" type="text" class="form-control" id="product_code_box" placeholder="الكود" autocomplete="off" />
+                <div class="col-md-1 padding-left-0 width-3p5">
+                    <h5 class="deep-fayroz">باركود</h5>
+                </div>
+                <div class="col-md-3 padding-left-0">
+                    <input type="number" id="product_barcode_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByBarCode()" />
+                </div>
+                <div class="col-md-1 padding-left-0 width-3p5">
+                    <h5 class="deep-fayroz">كود</h5>
+                </div>
+                <div class="col-md-3 padding-left-0">
+                    <input type="text" id="product_code_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByCode()" />
                 </div>
             </div>
+          <br />
 
             <div class="box-body">
                 <table id="example2" class="table table-bordered table-hover">
@@ -108,12 +126,10 @@
 
                         </tr>
                     </thead>
-                    <tbody id="product_data">
+                    <tbody class="text-bold" id="product_data">
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th>End</th>
-                        </tr>
+                      
                     </tfoot>
                 </table>
             </div><!-- /.box-body -->

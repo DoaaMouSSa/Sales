@@ -1,0 +1,64 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<table id="selectedProducts" class="table table-bordered">
+    <thead>
+        <tr>
+            <th style="width:5%;">#</th>
+       
+            <th>
+              المنتج
+            </th>
+            <th>
+                @*@Html.DisplayNameFor(model => model.SaleOrderDetail.Quantity)*@
+                الكميه
+            </th>
+            <th>
+                السعر
+            </th>
+            <th>
+               اجمالى السعر
+            </th>
+
+            <th>
+                حذف
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td id="SNo0">1</td>
+            <td style="display:none;"><input type="hidden" name="SaleOrderDetail.Index" value="0" /></td>
+            <td style="display:none;"><input type="text" readonly class="form-control classBGcolor" name="SaleOrderDetail[0].ProductId" id="idn0"></td>
+          
+            <td><input type="text" autocomplete="off" class="form-control" name="name0" id="name0" placeholder="Type product name" data-toggle="tooltip" data-placement="top" title="Type product name"></td>
+            <td><input type="text" autocomplete="off" class="form-control classBGcolor" name="SaleOrderDetail[0].SalePrice" id="salePrice0"></td>
+            <td><input type="text" autocomplete="off" class="form-control" name="SaleOrderDetail[0].Quantity" id="quantity0"></td>
+
+            <td>
+                <select class="form-control" name="SaleOrderDetail[0].IsPack" id="isPack0">
+                    <option value="false">Piece</option>
+                    <option value="true" selected>Pack</option>
+                </select>
+            </td>
+            <td><input type="text" readonly autocomplete="off" class="form-control" name="SaleOrderDetail[0].PerPack" id="perPack0"></td>
+            <td><input type="text" readonly class="form-control classBGcolor" name="itemTotal0" id="itemTotal0" tabindex="-1"></td>
+            <td style="display:none;">
+                <select class="form-control" name="SaleOrderDetail[0].SaleType" id="saleType0">
+                    <option value="false" selected>Order</option>
+                    <option value="true">Return</option>
+                </select>
+            </td>
+
+            <td>
+              
+                <button type="button" id="delete0" class="delete btn btn-default add-new"><a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></button>
+            </td>
+        </tr>
+
+    </tbody>
+
+</table>

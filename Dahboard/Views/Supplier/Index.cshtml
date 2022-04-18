@@ -1,0 +1,92 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" id="container">
+            <div class="box-header">
+                <div class="row text-center">
+                    <h3 class="text-center org">الموردين</h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <button class="btn-org btn-block font-16 font-600 float-left" data-toggle="modal" data-target="#exampleModal" autofocus>مورد جديد</button>
+                    </div>
+
+                </div>
+                @*<i class="fa fa-user icon absolute"></i>
+                    <input class='relative' style='width: 24px; height: 31px;caret-color: transparent;'>*@
+            </div><!-- /.box-header -->
+            <!-- Modal For Add -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title text-center org" id="exampleModalLabel">اضافه مورد</h4>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="supplier_name" class="control-label fayroz">اسم المورد</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') onkeydown="clearWarningMsg('#validsupplierName')" type="text" class="form-control border-radius-5 border-fayroz" id="supplier_name" autocomplete="off" autofocus />
+                                <p class="text-danger" id="validsupplierName"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="supplier_code" class="control-label fayroz">كود المورد</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" class="form-control border-radius-5 border-fayroz" id="supplier_code" autocomplete="off" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="supplier_phone" class="control-label fayroz">تليفون المورد</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" class="form-control border-radius-5 border-fayroz" id="supplier_phone" autocomplete="off" />
+
+                            </div>
+                            <div class="form-group">
+                                <label for="supplier_address" class="control-label fayroz">عنوان المورد</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" class="form-control border-radius-5 border-fayroz" id="supplier_address" autocomplete="off" />
+
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-org" onclick="Addsupplier();" id="btnSave">حفظ</button>
+                            <button type="button" class="btn-grey" data-dismiss="modal">الغاء</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!----------------------------------------------------->
+            <!-----end modal for Add-->
+            <div class="box-body">
+                <table id="supplierTbl" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>الاسم</th>
+                            <th>الكود</th>
+                            <th>التليفون</th>
+                            <th>العنوان</th>
+                            <th>تعديل</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="supplier_data" class="text-bold">
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/common/ClearValidateWarning.js"></script>
+<script src="~/js/HandleModal/EnterPress.js"></script>
+<script src="~/js/HandleModal/getFocusElements.js"></script>
+<script src="~/js/supplier/indexSupplier.js"></script>
+<script src="~/js/supplier/DeleteSupplier.js"></script>
+<script src="~/js/supplier/addSupplier.js"></script>
+<script src="~/js/supplier/UpdateSupplier.js"></script>

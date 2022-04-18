@@ -10,6 +10,12 @@ function PressEnterEditCat(event, btn, id) {
         document.getElementById(btn).onclick(id);
     }
 }
+function PressEnterEditCustomer(event, btn, id) {
+    if (event.keyCode === 13) {
+        EditCustomer(id);
+        document.getElementById(btn).onclick(id);
+    }
+}
 function PressEnterEditSubCat(event, btn, id) {
     if (event.keyCode === 13) {
         EditSubCat(id);

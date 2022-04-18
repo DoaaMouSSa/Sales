@@ -1,16 +1,16 @@
 ﻿
 function AddPurchase() {
+    var t = document.getElementById('purchaseTbl');
     var totalPurchase = parseFloat($('tfoot th#purchaseTotalNum').text());
     
     var storeId = parseInt(document.getElementById("stores").value);
     var products = [];  
     var i = 0;
-    var t = document.getElementById('purchaseTbl');
 
     $("#purchaseTbl tr").each(function () {
 
         var productId = parseInt($(t.rows[i].cells[0]).text());
-        var productQty = parseInt($(t.rows[i].cells[2]).text());
+        var productQty = parseInt(t.rows[i].cells[2].getElementsByTagName('input')[0].value);
         var productPrice = parseFloat($(t.rows[i].cells[3]).text());
         var productTotal = parseFloat($(t.rows[i].cells[4]).text());
             var product = {

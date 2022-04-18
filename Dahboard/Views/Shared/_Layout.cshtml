@@ -35,6 +35,7 @@
     <link rel="stylesheet" href="~/DashboardAssests/dist/css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="~/DashboardAssests/dist/css/rtl.css">
     <link rel="stylesheet" href="~/css/mainCss/main.css" />
+    <link rel="stylesheet" href="~/css/mainCss/rightMenu.css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,7 +43,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="skin-blue sidebar-mini">
+<body class="skin-yellow sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
@@ -51,7 +52,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Admin</b>LTE</span>
+                <span class="logo-lg"><b>sales</b>system</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -338,6 +339,15 @@
                                 <a asp-controller="Store"
                                    asp-action="Index"><i class="fa fa-gears"></i>المخازن</a>
                             </li>
+                            <li>
+                                <a asp-controller="Supplier"
+                                   asp-action="Index"><i class="fa fa-users"></i>الموردين</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Customer"
+                                   asp-action="Index"><i class="fa fa-user"></i>العملاء</a>
+                            </li>
+
                         </ul>
                     </li>
                     <li class="treeview">
@@ -350,6 +360,10 @@
                                    asp-action="Index"><i class="fa fa-circle-o"></i>مشتريات</a>
                             </li>
                             <li>
+                                <a asp-controller="purchase"
+                                   asp-action="Create"><i class="fa fa-circle-o"></i>new purchase</a>
+                            </li>
+                            <li>
                                 <a asp-controller="test"
                                    asp-action="Index"><i class="fa fa-shopping-cart"></i>مرتجع مشتريات</a>
                             </li>
@@ -360,6 +374,10 @@
                             <li>
                                 <a asp-controller="test"
                                    asp-action="Index"><i class="fa fa-gears"></i>مرتجع مبيعات</a>
+                            </li>
+                            <li>
+                                <a asp-controller="StoreDetails"
+                                   asp-action="Index"><i class="fa fa-gears"></i>المخزون</a>
                             </li>
                         </ul>
                     </li>
@@ -420,6 +438,7 @@
     <script src="~/DashboardAssests/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/DashboardAssests/dist/js/demo.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

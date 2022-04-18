@@ -7,32 +7,32 @@
     <div class="col-xs-12">
         <div class="box" id="ContainSubCat">
             <div class="box-header">
-                <h3 class="box-title">التصنيف</h3>
-                <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal" autofocus>تصنيف جديد</button>
+                <h3 class="text-center org">التصنيف</h3>
+                <button class="btn-org float-left" data-toggle="modal" data-target="#exampleModal" autofocus>تصنيف جديد</button>
             </div><!-- /.box-header -->
             <!-- Modal For Add -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">اضافه تصنيف</h5>
+                            <h4 class="modal-title text-center org" id="exampleModalLabel">اضافه تصنيف</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-                            <label for="sub_cat_name">اسم التصنيف</label>
-                            <input onkeypress="" type="text" class="form-control" id="sub_cat_name" onkeydown="clearWarningMsg('#validSubCatName')" autofocus autocomplete="off" />
+                            <label for="sub_cat_name" class="fayroz">اسم التصنيف</label>
+                            <input onkeypress="" type="text" class="form-control border-radius-5 border-fayroz" id="sub_cat_name" onkeydown="clearWarningMsg('#validSubCatName')" autofocus autocomplete="off" />
                             <p class="text-danger" id="validSubCatName"></p>
                             <br />
-                            <label for="departments">القسم</label>
-                            <select name="department" id="departments" class="form-control no-padding">
+                            <label for="departments" class="fayroz">القسم</label>
+                            <select name="department" id="departments" class="form-control no-padding border-radius-5 border-fayroz">
                                 <option value="0" id="0">بدون قسم</option>
                             </select>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="AddSubCat();">حفظ</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                            <button type="button" class="btn-org" onclick="AddSubCat();">حفظ</button>
+                            <button type="button" class="btn-grey" data-dismiss="modal">الغاء</button>
                         </div>
                     </div>
                 </div>
@@ -48,12 +48,10 @@
                             <th>حذف</th>
                         </tr>
                     </thead>
-                    <tbody id="sub_cat_data">
+                    <tbody class="text-bold" id="sub_cat_data">
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th>End</th>
-                        </tr>
+                      
                     </tfoot>
                 </table>
             </div><!-- /.box-body -->

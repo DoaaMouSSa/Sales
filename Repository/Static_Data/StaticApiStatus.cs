@@ -14,7 +14,6 @@ namespace Repository.Static_Data
             public static string Status = "success";
             public static string MessageEn = "Success Get Data";
             public static string MessageAr = "تم تحميل البيانات بنجاح";
-
         }
         public static class ApiSaveSuccess
         {
@@ -59,6 +58,13 @@ namespace Repository.Static_Data
             public static string Status = "empty-product";
             public static string MessageEn = "no product";
             public static string MessageAr = "هذا الصنف غير متوفر بالمخزن";
+        }
+        public static class ApiStoreEmpty
+        {
+            public static string Code = "505";
+            public static string Status = "empty";
+            public static string MessageEn = "empty";
+            public static string MessageAr = "غير متوفر أصناف بالمخزن";
         }
     }
 }

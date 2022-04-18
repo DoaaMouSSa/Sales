@@ -6,11 +6,11 @@
 <style>
     .absolute {
         position: absolute;
-        z-index:1;
+        z-index: 1;
     }
 
     .relative {
-       position:relative;
+        position: relative;
     }
 </style>
 
@@ -20,40 +20,40 @@
         <div class="box" id="container">
             <div class="box-header">
                 <div class="row text-center">
-                    <h3 class="box-title fayroz">الأقسام</h3>
+                    <h3 class="text-center org">الأقسام</h3>
                 </div>
                 <div class="row">
-                    <div class="col-md-1">
-                        <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal" autofocus>قسم جديد</button>
+                    <div class="col-md-2">
+                        <button class="btn-org btn-block font-16 font-600 float-left" data-toggle="modal" data-target="#exampleModal" autofocus>قسم جديد</button>
                     </div>
-                    <div class="col-md-1">
-                        <a class="btn btn-info" asp-controller="SubCategory"
+                    <div class="col-md-2">
+                        <a class="btn-green btn-block font-16 font-600 text-center" asp-controller="SubCategory"
                            asp-action="Index">التصنيف</a>
                     </div>
-                    </div>
-                    @*<i class="fa fa-user icon absolute"></i>
-        <input class='relative' style='width: 24px; height: 31px;caret-color: transparent;'>*@
-                </div><!-- /.box-header -->
+                </div>
+                @*<i class="fa fa-user icon absolute"></i>
+                    <input class='relative' style='width: 24px; height: 31px;caret-color: transparent;'>*@
+            </div><!-- /.box-header -->
             <!-- Modal For Add -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">اضافه قسم</h5>
+                            <h4 class="modal-title text-center org" id="exampleModalLabel">اضافه قسم</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">
-                                <label for="cat_name" class="control-label">اسم القسم</label>
-                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') onkeydown="clearWarningMsg('#validCatName')" type="text" class="form-control" id="cat_name" autocomplete="off" autofocus/>
+                                <label for="cat_name" class="control-label fayroz">اسم القسم</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') onkeydown="clearWarningMsg('#validCatName')" type="text" class="form-control border-radius-5 border-fayroz" id="cat_name" autocomplete="off" autofocus />
                                 <p class="text-danger" id="validCatName"></p>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" onclick="AddCat();"  id="btnSave">حفظ</button>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
+                            <button type="button" class="btn-org" onclick="AddCat();" id="btnSave">حفظ</button>
+                            <button type="button" class="btn-grey" data-dismiss="modal">الغاء</button>
                         </div>
                     </div>
                 </div>
@@ -61,7 +61,7 @@
             <!----------------------------------------------------->
             <!-----end modal for Add-->
             <div class="box-body">
-                <table id="example2" class="table table-bordered table-hover">
+                <table id="categoryTbl" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>الاسم</th>
@@ -69,12 +69,10 @@
                             <th>حذف</th>
                         </tr>
                     </thead>
-                    <tbody id="cat_data">
+                    <tbody id="cat_data" class="text-bold">
                     </tbody>
                     <tfoot>
-                        <tr>
-                            <th>End</th>
-                        </tr>
+                      
                     </tfoot>
                 </table>
             </div><!-- /.box-body -->
@@ -89,3 +87,4 @@
 <script src="~/js/HandleModal/SaveFocus.js"></script>
 <script src="~/js/common/ClearValidateWarning.js"></script>
 <script src="~/js/HandleModal/EnterPress.js"></script>
+<script src="~/js/common/ResizeTbl.js"></script>

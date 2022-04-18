@@ -22,6 +22,9 @@ namespace DataLayer.DBContext
         public DbSet<TblSalesInvoice> tblSales { get; set; }
         public DbSet<TblSalesInvoiceDetails> tblSalesDetails { get; set; }
         public DbSet<TblStoreDetails> tblStoreDetails { get; set; }
+        public DbSet<TblSupplier> tblSupplier { get; set; }
+        public DbSet<TblCustomer> tblCustomer { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer("Server=DESKTOP-7SI5D2G;Database=ACCDB;Trusted_Connection=True;MultipleActiveResultSets=true;");
