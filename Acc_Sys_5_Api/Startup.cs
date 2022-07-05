@@ -38,13 +38,18 @@ namespace Acc_Sys_5_Api
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Acc_Sys_5_Api", Version = "v1" });
             });
             #region repository
+            services.AddScoped<ILoginRepository, LoginRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
-            services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<ISubCategoryRepository, SubCategoryRepository>();
             services.AddScoped<IProuductRepository, ProductRepository>();
             services.AddScoped<IProductSearchRepository, ProductSearchRepository>();
             services.AddScoped<IStoreRepository, StoreRepository>();
             services.AddScoped<IPurchaseRepository, PurchaseRepository>();
+            services.AddScoped<ISalesRepository, SalesRepository>();
+            services.AddScoped<IStoreFilterRepository, StoreFilterRepository>();
+            services.AddScoped<ISupplierRepository, SupplierRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+
             #endregion
         }
 

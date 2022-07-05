@@ -33,9 +33,9 @@ namespace Repository.Repository
                 {
                     if (db.tblCategory.Any(c => c.cat_name == cat.cat_name))
                     {
-                        res.code = Static_Data.StaticApiStatus.ApiDuplicate.Code;
-                        res.status = Static_Data.StaticApiStatus.ApiDuplicate.Status;
-                        res.message = Static_Data.StaticApiStatus.ApiDuplicate.MessageAr;
+                        res.code = Static_Data.DuplicateData.DuplicateName.Code;
+                        res.status = Static_Data.DuplicateData.DuplicateName.Status;
+                        res.message = Static_Data.DuplicateData.DuplicateName.MessageAr;
                     }
                     else
                     {
@@ -51,6 +51,7 @@ namespace Repository.Repository
                         res.code = Static_Data.StaticApiStatus.ApiSaveSuccess.Code;
                         res.status = Static_Data.StaticApiStatus.ApiSaveSuccess.Status;
                         res.message = Static_Data.StaticApiStatus.ApiSaveSuccess.MessageAr;
+                        res.payload = cat;
                     }
                 }
                 else
@@ -64,19 +65,6 @@ namespace Repository.Repository
             
             
             return res;
-        }
-
-        public bool Delete(int id)
-        {
-            bool deleted = false;
-            if (id != 0)
-            {
-                var cat = db.tblCategory.Where(c => c.id == id).FirstOrDefault();
-                db.tblCategory.Remove(cat);
-                db.SaveChanges();
-                deleted = true;
-            }
-            return deleted;
         }
 
         public dtoCategory Edit(dtoCategory cat)
@@ -106,62 +94,28 @@ namespace Repository.Repository
                                           return allcat;
         }
 
-        public string ReadExcelFile()
+
+
+        public Response<bool> Delete(int id)
         {
-            return "...";
-
-            // #region Variable Declaration  
-            // string message = "";
-            // //HttpResponseMessage ResponseMessage = null;
-            //// var httpRequest = HttpContext.Current.Request;
-            // DataSet dsexcelRecords = new DataSet();
-            // IExcelDataReader reader = null;
-            // IFormFile Inputfile = null;
-            // Stream FileStream = null;
-            // #endregion
-            // #region Save Student Detail From Excel  
-            // if (httpRequest.Files.Count > 0)
-            // {
-            //     Inputfile = httpRequest.Files[0];
-            //     FileStream = Inputfile.OpenReadStream();
-
-            //     if (Inputfile != null && FileStream != null)
-            //     {
-            //         if (Inputfile.FileName.EndsWith(".xls"))
-            //             reader = ExcelReaderFactory.CreateBinaryReader(FileStream);
-            //         else if (Inputfile.FileName.EndsWith(".xlsx"))
-            //             reader = ExcelReaderFactory.CreateOpenXmlReader(FileStream);
-            //         else
-            //             message = "The file format is not supported.";
-
-            //         dsexcelRecords = reader.AsDataSet();
-            //         reader.Close();
-
-            //         if (dsexcelRecords != null && dsexcelRecords.Tables.Count > 0)
-            //         {
-            //             DataTable dt = dsexcelRecords.Tables[0];
-            //             for (int i = 0; i < dt.Rows.Count; i++)
-            //             {
-            //                 dtoCategory objCateogy = new dtoCategory();
-            //                 objCateogy.cat_name = (dt.Rows[i][0]).ToString();
-            //             }
-
-            //             int output = db.SaveChanges();
-            //             if (output > 0)
-            //                 message = "The Excel file has been successfully uploaded.";
-            //             else
-            //                 message = "Something Went Wrong!, The Excel file uploaded has fiald.";
-            //         }
-            //         else
-            //             message = "Selected file is empty.";
-            //     }
-            //     else
-            //         message = "Invalid File.";
-            // }
-            // else
-            //     message = "bad request";
-              }
+            Response<bool> response = new Response<bool>();
+            bool isDeleted = false;
+            if (id != 0)
+            {
+                var isExist = db.tblCategory.Where(c => c.id == id).FirstOrDefault();
+                if (isExist != null)
+                {
+                    isExist.is_deleted = 1;
+                }
+                db.SaveChanges();
+               
+            }
+            return response;
+         
         }
+
+      
+    }
     }
 
 

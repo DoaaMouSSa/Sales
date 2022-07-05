@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -34,6 +34,14 @@
     <link rel="stylesheet" href="~/DashboardAssests/dist/fonts/fonts-fa.css">
     <link rel="stylesheet" href="~/DashboardAssests/dist/css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="~/DashboardAssests/dist/css/rtl.css">
+    <link rel="stylesheet" src="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" src="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />
+    <link rel="stylesheet" href="~/css/mainCss/main.css" />
+    <link rel="stylesheet" href="~/css/mainCss/rightMenu.css" />
+    <link rel="stylesheet" href="~/css/mainCss/tables.css" />
+    <link rel="stylesheet" href="~/css/mainCss/main.css" />
+    <link rel="stylesheet" href="~/css/mainCss/Button.css" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -41,7 +49,7 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
-<body class="skin-blue sidebar-mini">
+<body class="skin-yellow sidebar-mini">
     <div class="wrapper">
 
         <header class="main-header">
@@ -50,7 +58,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Admin</b>LTE</span>
+                <span class="logo-lg"><b>sales</b>system</span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
             <nav class="navbar navbar-static-top" role="navigation">
@@ -337,6 +345,15 @@
                                 <a asp-controller="Store"
                                    asp-action="Index"><i class="fa fa-gears"></i>المخازن</a>
                             </li>
+                            <li>
+                                <a asp-controller="Supplier"
+                                   asp-action="Index"><i class="fa fa-users"></i>الموردين</a>
+                            </li>
+                            <li>
+                                <a asp-controller="Customer"
+                                   asp-action="Index"><i class="fa fa-user"></i>العملاء</a>
+                            </li>
+
                         </ul>
                     </li>
                     <li class="treeview">
@@ -349,16 +366,33 @@
                                    asp-action="Index"><i class="fa fa-circle-o"></i>مشتريات</a>
                             </li>
                             <li>
-                                <a asp-controller="test"
-                                   asp-action="Index"><i class="fa fa-shopping-cart"></i>مرتجع مشتريات</a>
+                                <a asp-controller="Purchase"
+                                   asp-action="Create"><i class="fa fa-envelope-o"></i>فاتوره شراء</a>
                             </li>
                             <li>
-                                <a asp-controller="test"
+                                <a asp-controller="sales"
                                    asp-action="Index"><i class="fa fa-gears"></i>مبيعات</a>
                             </li>
                             <li>
-                                <a asp-controller="test"
-                                   asp-action="Index"><i class="fa fa-gears"></i>مرتجع مبيعات</a>
+                                <a asp-controller="Sales"
+                                   asp-action="Create"><i class="fa fa-envelope-o"></i>فاتوره مبيعات</a>
+                            </li>
+                            <li>
+                                <a asp-controller="SalesReturn"
+                                   asp-action="Create"><i class="fa fa-gears"></i>فاتوره مرتجع بيع </a>
+                            </li>
+                            <li>
+                                <a asp-controller="PurchaseReturn"
+                                   asp-action="Create"><i class="fa fa-gears"></i>فاتوره مرتجع شراء </a>
+                            </li>
+                            @*<li>
+            <a asp-controller="SalesReturn"
+               asp-action="Index"><i class="fa fa-gears"></i>فواتير مرتجع المبيعات</a>
+        </li>*@
+
+                            <li>
+                                <a asp-controller="StoreDetails"
+                                   asp-action="Index"><i class="fa fa-gears"></i>المخزون</a>
                             </li>
                         </ul>
                     </li>
@@ -374,12 +408,12 @@
                 @RenderBody()
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->
-        <footer class="main-footer">
+        @*<footer class="main-footer">
             <div class="pull-left hidden-xs">
                 <b>Version</b> 2.2.0
             </div>
             <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
-        </footer>
+        </footer>*@
         <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
     <!-- jQuery 2.1.4 -->
@@ -419,6 +453,7 @@
     <script src="~/DashboardAssests/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="~/DashboardAssests/dist/js/demo.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

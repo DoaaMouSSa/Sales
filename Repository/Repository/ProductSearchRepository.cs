@@ -27,6 +27,7 @@ namespace Repository.Repository
                   {
                       id = p.id,
                       product_name = p.product_name,
+                      sub_cat_name = p.TblSubCategory.subcat_name,
                       code = p.code,
                       barcode = p.barcode,
                       purchase_price = p.purchase_price,
@@ -43,6 +44,7 @@ namespace Repository.Repository
                      {
                          id = p.id,
                          product_name = p.product_name,
+                         sub_cat_name = p.TblSubCategory.subcat_name,
                          code = p.code,
                          barcode = p.barcode,
                          purchase_price = p.purchase_price,
@@ -64,6 +66,7 @@ namespace Repository.Repository
                   {
                       id = p.id,
                       product_name = p.product_name,
+                      sub_cat_name = p.TblSubCategory.subcat_name,
                       code = p.code,
                       barcode = p.barcode,
                       purchase_price = p.purchase_price,
@@ -80,6 +83,7 @@ namespace Repository.Repository
                      {
                          id = p.id,
                          product_name = p.product_name,
+                         sub_cat_name = p.TblSubCategory.subcat_name,
                          code = p.code,
                          barcode = p.barcode,
                          purchase_price = p.purchase_price,
@@ -102,6 +106,7 @@ namespace Repository.Repository
                   {
                       id = p.id,
                       product_name = p.product_name,
+                      sub_cat_name = p.TblSubCategory.subcat_name,
                       code = p.code,
                       barcode = p.barcode,
                       purchase_price = p.purchase_price,
@@ -118,6 +123,7 @@ namespace Repository.Repository
                      {
                          id = p.id,
                          product_name = p.product_name,
+                         sub_cat_name = p.TblSubCategory.subcat_name,
                          code = p.code,
                          barcode = p.barcode,
                          purchase_price = p.purchase_price,

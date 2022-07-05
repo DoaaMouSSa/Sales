@@ -1,0 +1,50 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" id="container">
+            <div class="box-header">
+                <div class="row">
+                    <div class="row text-center">
+                        <h3 class="text-center org">تفاصيل الفاتوره</h3>
+                    </div>
+
+                    <div class="col-md-3">
+                        <a class="btn-green btn-block font-16 font-600 text-center" asp-controller="Sales"
+                           asp-action="Index"> العوده الى فواتير المبيعات </a>
+                    </div>
+                </div>
+                <br />
+
+
+
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>اسم المنتج</th>
+                            <th>الكميه</th>
+                            <th>سعر البيع</th>
+                            <th>الاجمالى</th>
+                            <th>تعديل</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sales_details_data">
+                       
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/sales/SalesInvDetails.js"></script>

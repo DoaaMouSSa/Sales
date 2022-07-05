@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dto.Dto;
+
 namespace Repository.Repository
 {
     public class SubCategoryRepository : ISubCategoryRepository
@@ -17,27 +17,53 @@ namespace Repository.Repository
         {
             db = _db;
         }
-        public dtoSubCategoryForAdd Add(dtoSubCategoryForAdd dto)
+        public Response<dtoSubCategoryForAdd>  Add(dtoSubCategoryForAdd dto)
         {
+            Response<dtoSubCategoryForAdd> res = new Response<dtoSubCategoryForAdd>();
+
             if (dto != null)
             {
-                var newSubCat = new TblSubCategory()
+                if (dto.subcat_name != "")
                 {
-                    id = dto.id,
-                    subcat_name = dto.subcat_name,
-                    cat_id=dto.cat_id
-                };
-                db.tblSubCategory.Add(newSubCat);
-                db.SaveChanges();
-                dto.id = newSubCat.id;
-                dto.subcat_name = newSubCat.subcat_name;
-                dto.cat_id = newSubCat.cat_id;
+                    if (db.tblSubCategory.Where(c => c.cat_id == dto.cat_id).Any(c => c.subcat_name == dto.subcat_name))
+                    {
+                        res.code = Static_Data.DuplicateData.DuplicateName.Code;
+                        res.status = Static_Data.DuplicateData.DuplicateName.Status;
+                        res.message = Static_Data.DuplicateData.DuplicateName.MessageAr;
+                    }
+                    else
+                    {
+                        var newSubCat = new TblSubCategory()
+                        {
+                            id = dto.id,
+                            subcat_name = dto.subcat_name,
+                            cat_id = dto.cat_id
+                        };
+                        db.tblSubCategory.Add(newSubCat);
+                        db.SaveChanges();
+                        dto.id = newSubCat.id;
+                        dto.subcat_name = newSubCat.subcat_name;
+                        dto.cat_id = newSubCat.cat_id;
+                        res.code = Static_Data.StaticApiStatus.ApiSaveSuccess.Code;
+                        res.status = Static_Data.StaticApiStatus.ApiSaveSuccess.Status;
+                        res.message = Static_Data.StaticApiStatus.ApiSaveSuccess.MessageAr;
+                        res.payload = dto;
+                    }                         
+                }
+                else
+                {
+                    res.code = Static_Data.StaticApiStatus.ApiRequired.Code;
+                    res.status = Static_Data.StaticApiStatus.ApiRequired.Status;
+                    res.message = Static_Data.StaticApiStatus.ApiRequired.MessageAr;
+                }
             }
-            return dto;
+            return res;
         }
 
-        public bool Delete(int id)
+        public Response<bool> Delete(int id)
         {
+            Response<bool> response = new Response<bool>();
+
             bool deleted = false;
             if (id != 0)
             {
@@ -46,7 +72,7 @@ namespace Repository.Repository
                 db.SaveChanges();
                 deleted = true;
             }
-            return deleted;
+            return response;
         }
 
         public dtoSubCategoryForAdd Edit(dtoSubCategoryForAdd dto)

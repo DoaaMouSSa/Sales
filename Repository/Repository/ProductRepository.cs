@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DtoReport.Dto;
 
 namespace Repository.Repository
 {
@@ -17,36 +18,72 @@ namespace Repository.Repository
         {
             db = _db;
         }
-        public dtoProductForAdd Add(dtoProductForAdd dto)
+        public Response<dtoProductForAdd> Add(dtoProductForAdd dto)
         {
+            Response<dtoProductForAdd> res = new Response<dtoProductForAdd>();
+
             if (dto != null)
             {
-                var newPro = new TblProduct()
+                if (dto.product_name != "")
                 {
-                    id = dto.id,
-                    code = dto.code,
-                    barcode = dto.barcode,
-                    product_name=dto.product_name,
-                    purchase_price=dto.purchase_price,
-                    sale_price=dto.sale_price,
-                    sub_cat_id=dto.sub_cat_id
-                };
-                db.tblProduct.Add(newPro);
-                db.SaveChanges();
-                dto.id = newPro.id;
-                dto.code = newPro.code;
-                dto.barcode = newPro.barcode;
-                dto.product_name = newPro.product_name;
-                dto.purchase_price = newPro.purchase_price;
-                dto.sale_price = newPro.sale_price;
-                dto.sub_cat_id = newPro.sub_cat_id;
 
+                    if (db.tblProduct.Where(p => p.sub_cat_id == dto.sub_cat_id).Where(p=>p.code!="").Any(p => p.code == dto.code))
+
+                    {
+                        res.code = Static_Data.DuplicateData.DuplicateCode.Code;
+                        res.status = Static_Data.DuplicateData.DuplicateCode.Status;
+                        res.message = Static_Data.DuplicateData.DuplicateCode.MessageAr;
+                    }
+                    else if (db.tblProduct.Where(p => p.sub_cat_id == dto.sub_cat_id).Where(p => p.barcode != "").Any(p => p.barcode == dto.barcode))
+
+                    {
+                        res.code = Static_Data.DuplicateData.DuplicateBarCode.Code;
+                        res.status = Static_Data.DuplicateData.DuplicateBarCode.Status;
+                        res.message = Static_Data.DuplicateData.DuplicateBarCode.MessageAr;
+                    }
+                    else
+                    {
+                        var newPro = new TblProduct()
+                        {
+                            id = dto.id,
+                            code = dto.code,
+                            barcode = dto.barcode,
+                            product_name = dto.product_name,
+                            purchase_price = dto.purchase_price,
+                            sale_price = dto.sale_price,
+                            sub_cat_id = dto.sub_cat_id
+                        };
+                        db.tblProduct.Add(newPro);
+                        db.SaveChanges();
+                        dto.id = newPro.id;
+                        dto.code = newPro.code;
+                        dto.barcode = newPro.barcode;
+                        dto.product_name = newPro.product_name;
+                        dto.purchase_price = newPro.purchase_price;
+                        dto.sale_price = newPro.sale_price;
+                        dto.sub_cat_id = newPro.sub_cat_id;
+                        res.code = Static_Data.StaticApiStatus.ApiSaveSuccess.Code;
+                        res.status = Static_Data.StaticApiStatus.ApiSaveSuccess.Status;
+                        res.message = Static_Data.StaticApiStatus.ApiSaveSuccess.MessageAr;
+                        res.payload = dto;
+                    }
+                }
             }
-            return dto;
+            else
+            {
+                res.code = Static_Data.StaticApiStatus.ApiRequired.Code;
+                res.status = Static_Data.StaticApiStatus.ApiRequired.Status;
+                res.message = Static_Data.StaticApiStatus.ApiRequired.MessageAr;
+            }
+
+            
+            return res;
         }
 
-        public bool Delete(int id)
+        public Response<bool> Delete(int id)
         {
+            Response<bool> response = new Response<bool>();
+
             bool deleted = false;
             if (id != 0)
             {
@@ -55,7 +92,7 @@ namespace Repository.Repository
                 db.SaveChanges();
                 deleted = true;
             }
-            return deleted;
+            return response;
         }
 
         public dtoProductForAdd Edit(dtoProductForAdd dto)
@@ -99,6 +136,42 @@ namespace Repository.Repository
                                  sub_cat_name=p.TblSubCategory.subcat_name,
                              }).ToList();
             return allPro;
+        }
+        public List<dtoProductReport> ReadForReport()
+        {
+            var allPro = (from p in db.tblProduct
+                          select new dtoProductReport()
+                          {
+                              id = p.id,
+                              product_name = p.product_name,
+                              code = p.code,
+                              barcode = p.barcode,
+                              purchase_price = p.purchase_price,
+                              sale_price = p.sale_price,
+                              sub_cat_id = p.TblSubCategory.id,
+                              sub_cat_name = p.TblSubCategory.subcat_name,
+                          }).ToList();
+            return allPro;
+        }
+
+        public Response<List<dtoProductForShowBeforeAddToInvoice>> ReadForInvoiceAdd(string character,int store_id)
+        {
+            Response<List<dtoProductForShowBeforeAddToInvoice>> response = new Response<List<dtoProductForShowBeforeAddToInvoice>>();
+            var allPro = (from p in db.tblProduct
+                          join s in db.tblStoreDetails on p.id equals s.product_id
+                          where s.store_id == store_id && p.product_name.Contains(character) 
+                    select new dtoProductForShowBeforeAddToInvoice()
+                          {
+                              id = p.id,
+                              product_name = p.product_name,
+                              purchase_price = p.purchase_price,
+                              sale_price=p.sale_price,
+                              qty=s.qty,
+                          }).ToList();
+            response.code = Static_Data.StaticApiStatus.ApiSuccess.Code;
+            response.status = Static_Data.StaticApiStatus.ApiSuccess.Status;
+            response.payload = allPro;
+            return response;
         }
     }
 }

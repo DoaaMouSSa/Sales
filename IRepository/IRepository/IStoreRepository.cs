@@ -9,9 +9,9 @@ namespace IRepository.IRepository
 {
     public interface IStoreRepository
     {
-        public dtoStore Add(dtoStore dto);
+        public Response<dtoStore> Add(dtoStore dto);
         public dtoStore Edit(dtoStore dto);
-        public bool Delete(int id);
-        public List<dtoStore> Read();
+        public Response<bool> Delete(int id);
+        public Response<List<dtoStore>> Read();
     }
 }

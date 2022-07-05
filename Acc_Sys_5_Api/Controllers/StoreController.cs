@@ -1,9 +1,11 @@
 ﻿using Dto.Dto;
 using IRepository.IRepository;
 using Microsoft.AspNetCore.Mvc;
+using Repository.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Acc_Sys_5_Api.Controllers
@@ -19,13 +21,13 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("AddStore")]
         [HttpPost]
-        public dtoStore AddStore(dtoStore dto)
+        public Response<dtoStore> AddStore(dtoStore dto)
         {
             var newStore = storeRepository.Add(dto);
             return newStore;
         }
         [Route("EditStore")]
-        [HttpPut]
+        [HttpPost]
         public dtoStore EditStore(dtoStore dto)
         {
             var store = storeRepository.Edit(dto);
@@ -33,17 +35,27 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteStore")]
         [HttpGet]
-        public bool DeleteStore(int id)
+        public Response<bool> DeleteStore(int id)
         {
             var deleted = storeRepository.Delete(id);
             return deleted;
         }
         [Route("GetAllStore")]
         [HttpGet]
-        public List<dtoStore> GetAllStore()
+        //[BasicAuthentication]
+        public Response<List<dtoStore>> GetAllStore()
         {
+            //string Role = Thread.CurrentPrincipal.Identity.Name;
+            //if (Role == "admin")
+            //{
+            //    var allStore = storeRepository.Read();
+            //    return allStore;
+            //}
+            //else
+            //{
             var allStore = storeRepository.Read();
-            return allStore;
+              return allStore;
+            //}
         }
     }
 }

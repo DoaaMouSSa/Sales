@@ -6,9 +6,9 @@
     },
     dataType: 'json',
     success: function (result) {
-        for (var i = 0; i < result.length; i++) {
-            var row = result[i];
-            $('#stores').append("<option value=" + row.id + ">" + row.store_name + "</option>");
+        for (var i = 0; i < result.payload.length; i++) {
+            var row = result.payload[i];
+            $('#StoreDD').append("<option value=" + row.id + ">" + row.store_name + "</option>");
         }
     }, complete: function () {
         //$("#").css("visibility", "hidden");

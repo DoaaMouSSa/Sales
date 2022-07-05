@@ -1,0 +1,125 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" id="container">
+            <div class="box-header">
+                <div class="row">
+                    <div class="row text-center">
+                        <h3 class="text-center org">فواتير المبيعات</h3>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">العميل</label>
+                        <select onchange="FilterSales();" id="CustomerDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل العملاء</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المخزن</label>
+                        <select onchange="FilterSales();" id="StoreDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل المخازن</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">بدايه التاريخ</label>
+                        <input onchange="FilterSales();" type="datetime-local" id="fromDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfMonthBefore">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">نهايه التاريخ</label>
+                        <input onchange="FilterSales();" type="datetime-local" id="toDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfNow">
+
+                    </div>
+                    <div class="col-md-2">
+                        <button onclick="getAllSales();" id="btnFilterSales" class="btn-green btn-block margin-top-25 font-16 font-600">البحث</button>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxAllSales" value="2" onclick="check(this); FilterSales();" checked>
+                        <label class="form-check-label deep-fayroz hand" for="chboxAllSales">الجميع</label>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxNotDeletdSales" value="0" onclick="check(this); FilterSales();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxNotDeletdSales">معتمد</label>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxDeletdSales" value="1" onclick="check(this); FilterSales();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxDeletdSales">ملغى</label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="col-md-7 padding-left-0">
+                            <h5 class="deep-fayroz">بدايه المرجع</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" onkeyup="FilterSales();" id="codeStart" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="col-md-7 padding-left-0">
+                            <h5 class="deep-fayroz">نهايه المرجع</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" onkeyup="FilterSales();" id="codeEnd" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <a onclick="Print();" class="btn-green margin-top-25 font-16 font-600 hand">طباعه</a>
+                </div>
+            </div><!-- /.box-header -->
+
+            <div class="box-body">
+                <table class="table table-bordered table-hover" id="tbl">
+                    <thead>
+                        <tr>
+                            <th>المرجع</th>
+                            <th>العميل</th>
+                            <th>المخزن</th>
+                            <th>الاجمالى</th>
+                            <th>نوع العمليه</th>
+                            <th>التاريخ</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sales_data">
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/sales/FilterSalesCustomer.js"></script>
+<script src="~/js/sales/index.js"></script>
+<script src="~/js/Customer/CustomerForDD.js"></script>
+<script src="~/js/Store/LoadStoreForComboBox.js"></script>
+<script src="~/js/sales/FilterSales.js"></script>
+<script src="~/js/Dates/Date.js"></script>
+<script src="~/js/sales/DeleteSales.js"></script>
+<script src="~/js/sales/MinMaxInvCode.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function Print() {
+        window.open("SalesReport/SalesInvoices?url=" + api + "&clientID=" + clientId + "&store=" + storeId + "&fromDate=" + fromDate + "&toDate=" + toDate + "&fromCode=" + fromCode + "&toCode=" + toCode + "&isDel=" + isDeleted, "_blank");
+    }
+</script>

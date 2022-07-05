@@ -1,6 +1,72 @@
 ﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+    For المزيدrmation on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+<div class="row">
+    <div class="row text-center">
+        <h3 class="text-center deep-fayroz">الرئيسيه</h3>
+    </div>
+</div>
+<br />
+    <div class="row">
+        <div class="col-lg-3 col-xs-6">
 
+            <div class="small-box bg-aqua">
+                <div class="inner">
+                    <h3 id="countCat"></h3>
+                    <h5>الأقسام</h5>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-bag"></i>
+                </div>
+                <a asp-controller="Category" asp-action="Index" class="small-box-footer">المزيد <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+
+            <div class="small-box bg-green">
+                <div class="inner">
+                    <h3 id="countSubCat"></h3>
+                    <h5>التصنيفات</h5>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-stats-bars"></i>
+                </div>
+                <a asp-controller="SubCategory" asp-action="Index" class="small-box-footer">المزيد <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+
+            <div class="small-box bg-yellow">
+                <div class="inner">
+                    <h3 id="countPro"></h3>
+                    <h5>المنتجات</h5>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-person-add"></i>
+                </div>
+                <a asp-controller="Product" asp-action="Index" class="small-box-footer">المزيد <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-xs-6">
+
+            <div class="small-box bg-red">
+                <div class="inner">
+                    <h3 id="countSup"></h3>
+                    <h5>الموردين</h5>
+                </div>
+                <div class="icon">
+                    <i class="ion ion-pie-graph"></i>
+                </div>
+                <a asp-controller="Supplier" asp-action="Index" class="small-box-footer">المزيد <i class="fa fa-arrow-circle-right"></i></a>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/Dashboard/Index.js"></script>

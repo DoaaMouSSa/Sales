@@ -20,13 +20,13 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("AddProduct")]
         [HttpPost]
-        public dtoProductForAdd AddProduct(dtoProductForAdd dto)
+        public Response<dtoProductForAdd> AddProduct(dtoProductForAdd dto)
         {
             var newPro = prouductRepository.Add(dto);
             return newPro;
         }
         [Route("EditProduct")]
-        [HttpPut]
+        [HttpPost]
         public dtoProductForAdd EditProduct(dtoProductForAdd dto)
         {
             var pro = prouductRepository.Edit(dto);
@@ -34,10 +34,12 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteProduct")]
         [HttpGet]
-        public bool DeleteProduct(int id)
+        public Response<bool> DeleteProduct(int id)
         {
+            Response<bool> response = new Response<bool>();
+            
             var deleted = prouductRepository.Delete(id);
-            return deleted;
+            return response;
         }
         [Route("GetAllProduct")]
         [HttpGet]
@@ -46,5 +48,13 @@ namespace Acc_Sys_5_Api.Controllers
             var allpro = prouductRepository.Read();
             return allpro;
         }
+        [Route("GetAllProductBeforeAddToInvoice")]
+        [HttpGet]
+        public Response<List<dtoProductForShowBeforeAddToInvoice>> GetAllProductBeforeAddToInvoice(string character, int store_id)
+        {
+            var allpro = prouductRepository.ReadForInvoiceAdd(character, store_id);
+            return allpro;
+        }
+
     }
 }

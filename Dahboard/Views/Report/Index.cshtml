@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Dto.Dto.dtoPurchaseInvForShow>
+@{
+    ViewBag.Title = "www.compilemode.com";
+}
+
+<h1>ttest</h1>
+<div class="form-horizontal">
+    <hr />
+    <div class="form-group">
+        <table class="table table-responsive" style="width:400px">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @item.invoice_total
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @item.supplier_name
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @item.store_name
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        @item.final_total
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<a class="btn btn-primary" asp-action="MatrixReport" asp-controller="Report" asp-route-inv_number="40" target="_blank">Goooo</a>

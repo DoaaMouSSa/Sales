@@ -21,13 +21,13 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("AddSubCategory")]
         [HttpPost]
-        public dtoSubCategoryForAdd AddCat(dtoSubCategoryForAdd dto)
+        public Response<dtoSubCategoryForAdd> AddCat(dtoSubCategoryForAdd dto)
         {
             var newSubcat = subCategoryRepository.Add(dto);
             return newSubcat;
         }
         [Route("EditSubCategory")]
-        [HttpPut]
+        [HttpPost]
         public dtoSubCategoryForAdd EditCat(dtoSubCategoryForAdd dto)
         {
             var cat = subCategoryRepository.Edit(dto);
@@ -35,7 +35,7 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteSubCategory")]
         [HttpGet]
-        public bool DeleteCat(int id)
+        public Response<bool> DeleteCat(int id)
         {
             var deleted = subCategoryRepository.Delete(id);
             return deleted;

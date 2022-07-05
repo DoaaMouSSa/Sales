@@ -23,5 +23,9 @@ namespace DataLayer.Tables
         public float total_purchase_price_one_product { get; set; }
         [MaxLength(255)]
         public string notes { get; set; }
+        public int is_deleted { get; set; }
+        public DateTime? AddedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
     }
 }

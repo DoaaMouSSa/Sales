@@ -36,6 +36,30 @@ namespace DataLayer.Migrations
                     b.ToTable("tblCategory");
                 });
 
+            modelBuilder.Entity("DataLayer.Tables.TblCustomer", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("customer_address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("customer_code")
+                        .HasColumnType("int");
+
+                    b.Property<string>("customer_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("customer_phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("tblCustomer");
+                });
+
             modelBuilder.Entity("DataLayer.Tables.TblProduct", b =>
                 {
                     b.Property<int>("id")
@@ -126,6 +150,64 @@ namespace DataLayer.Migrations
                     b.ToTable("tblPurchaseDetails");
                 });
 
+            modelBuilder.Entity("DataLayer.Tables.TblSalesInvoice", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<DateTime>("sales_Added_Time")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("store_id")
+                        .HasColumnType("int");
+
+                    b.Property<float>("total")
+                        .HasColumnType("real");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("store_id");
+
+                    b.ToTable("tblSales");
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.TblSalesInvoiceDetails", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("notes")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("product_id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("qty")
+                        .HasColumnType("int");
+
+                    b.Property<int>("sale_inv_id")
+                        .HasColumnType("int");
+
+                    b.Property<float>("sales_price_one_product")
+                        .HasColumnType("real");
+
+                    b.Property<float>("total_sales_price_one_product")
+                        .HasColumnType("real");
+
+                    b.HasKey("id");
+
+                    b.HasIndex("product_id");
+
+                    b.HasIndex("sale_inv_id");
+
+                    b.ToTable("tblSalesDetails");
+                });
+
             modelBuilder.Entity("DataLayer.Tables.TblStore", b =>
                 {
                     b.Property<int>("id")
@@ -184,6 +266,30 @@ namespace DataLayer.Migrations
                     b.HasIndex("cat_id");
 
                     b.ToTable("tblSubCategory");
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.TblSupplier", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("supplier_address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("supplier_code")
+                        .HasColumnType("int");
+
+                    b.Property<string>("supplier_name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("supplier_phone")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("tblSupplier");
                 });
 
             modelBuilder.Entity("DataLayer.Tables.TblUser", b =>
@@ -245,6 +351,36 @@ namespace DataLayer.Migrations
                     b.Navigation("TblPurchaseInvoice");
                 });
 
+            modelBuilder.Entity("DataLayer.Tables.TblSalesInvoice", b =>
+                {
+                    b.HasOne("DataLayer.Tables.TblStore", "TblStore")
+                        .WithMany()
+                        .HasForeignKey("store_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TblStore");
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.TblSalesInvoiceDetails", b =>
+                {
+                    b.HasOne("DataLayer.Tables.TblProduct", "TblProduct")
+                        .WithMany()
+                        .HasForeignKey("product_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("DataLayer.Tables.TblSalesInvoice", "TblSalesInvoice")
+                        .WithMany("SalesInvoiceDetailsLst")
+                        .HasForeignKey("sale_inv_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TblProduct");
+
+                    b.Navigation("TblSalesInvoice");
+                });
+
             modelBuilder.Entity("DataLayer.Tables.TblStoreDetails", b =>
                 {
                     b.HasOne("DataLayer.Tables.TblProduct", "TblProduct")
@@ -281,6 +417,11 @@ namespace DataLayer.Migrations
             modelBuilder.Entity("DataLayer.Tables.TblPurchaseInvoice", b =>
                 {
                     b.Navigation("PurchaseInvoiceDetailsLst");
+                });
+
+            modelBuilder.Entity("DataLayer.Tables.TblSalesInvoice", b =>
+                {
+                    b.Navigation("SalesInvoiceDetailsLst");
                 });
 
             modelBuilder.Entity("DataLayer.Tables.TblSubCategory", b =>

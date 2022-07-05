@@ -1,0 +1,21 @@
+﻿body {
+}
+.btnAddIcon {
+    background-color: whitesmoke;
+    color: #f69814;
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+    font-size: 17px;
+    font-weight: 900;
+    border: none;
+    margin-right: 14px;
+}
+.disabledBtn {
+    background-color: #12a19b8f!important;
+    cursor: not-allowed!important;
+}
+.enabledBtn {
+    background-color: #12a19b!important;
+    cursor: pointer!important;
+}

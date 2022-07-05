@@ -1,0 +1,117 @@
+﻿
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="text-center org">المخزون</h3>
+                <div class="row">
+                    <div class="col-md-1 padding-left-0 width-7p5">
+                        <h5 class="deep-fayroz">المخزن</h5>
+                    </div>
+                    <div class="col-md-3 padding-left-0">
+                        <select id="StoreDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus onchange="LoadProductsFromCustomStore();GetCatsDependsOnStore();">
+                        </select>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-3">
+                        <button class="btn-green btn-block font-16 font-600" onclick="LoadProductsFromCustomStore();">استرجاع بيانات المخزن</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 padding-left-0 width-7p5">
+                        <h5 class="deep-fayroz">القسم</h5>
+                    </div>
+                    <div class="col-md-3 padding-left-0">
+                        <select id="CatDD" class="form-control no-padding text-center border-radius-5 border-fayroz" onchange="LoadProductsFromCustomStore();GetSubCats(this.value)">
+                        </select>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-3">
+                        <button class="btn-green btn-block font-16 font-600" id="btnPrint" onclick="exportToPdf();">طباعه بيانات المخزن</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 padding-left-0 width-7p5">
+                        <h5 class="deep-fayroz">التصنيف</h5>
+                    </div>
+                    <div class="col-md-3 padding-left-0">
+                        <select id="SubCatDD" class="form-control no-padding text-center border-radius-5 border-fayroz" onchange="LoadProductsFromCustomStore();">
+                        </select>
+                    </div>
+                </div>
+                <div class="row margin-1">
+
+                    <div class="col-md-1 padding-left-0 width-7p5">
+                        <h5 class="deep-fayroz">اسم الصنف</h5>
+                    </div>
+                    <div class="col-md-3 padding-left-0">
+                        <input type="text" id="product_name_box" class="form-control border-radius-5 border-fayroz" onkeyup="searchByName()" />
+                    </div>
+                    <div class="col-md-1 padding-left-0 width-3p5">
+                        <h5 class="deep-fayroz">باركود</h5>
+                    </div>
+                    <div class="col-md-3 padding-left-0">
+                        <input type="number" id="product_barcode_box" class="form-control border-radius-5 border-fayroz" onkeyup="searchByBarcode()" />
+                    </div>
+                    <div class="col-md-1 padding-left-0 width-3p5">
+                        <h5 class="deep-fayroz">كود</h5>
+                    </div>
+                    <div class="col-md-3 padding-left-0">
+                        <input type="text" id="product_code_box" class="form-control border-radius-5 border-fayroz" onkeyup="searchByCode()" />
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-2 padding-left-0">
+                        <input class="form-check-input border-fayroz" type="checkbox" id="chHasQty" value="option1" onchange="GetProductsWithNoQty();">
+                        <label class="form-check-label deep-fayroz" for="chHasQty">اصناف لديها مخزون</label>
+                    </div>
+                    <div class="col-md-2 padding-left-0 padding-right-0">
+                        <input class="form-check-input border-fayroz" type="checkbox" id="chNoQty" value="option1" onchange="GetProductsWithHasQty();">
+                        <label class="form-check-label deep-fayroz" for="chNoQty">اصناف نفذ رصيدها</label>
+                    </div>
+                    <div class="col-md-2 padding-left-0 padding-right-0">
+                        <input class="form-check-input border-fayroz" type="checkbox" id="chAnyQty" value="option1" onchange="GetProductsWithAnyQty();">
+                        <label class="form-check-label deep-fayroz" for="chAnyQty">جميع الارصده</label>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="box-body">
+                <table id="storeTbl" class="table table-bordered table-hover">
+                    <thead style="border:1px solid black;">
+                        <tr>
+                            <th>الفرع/المخزن</th>
+                            <th>التصنيف الرئيسى</th>
+                            <th>الصنف</th>
+                            <th>سعر البيع</th>
+                            <th>تكلفه السوقيه</th>
+                            <th>الكميه</th>
+                            <th>الكود</th>
+                            <th>الباركود</th>
+                        </tr>
+                    </thead>
+                    <tbody id="store_product_tbl" class="text-bold">
+                    </tbody>
+                    <tfoot>
+                        
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/StoreDetails/SubCatOnCatOnAfterStore.js"></script>
+<script src="~/js/StoreDetails/StoreForDD.js"></script>
+<script src="~/js/StoreDetails/CatsDependsOnStore.js"></script>
+<script src="~/js/StoreDetails/LoadDefault.js"></script>
+<script src="~/js/StoreDetails/SearchInStoreByVal.js"></script>
+<script src="~/js/StoreDetails/FilterByQty.js"></script>
+@*<script src="~/js/StoreDetails/PrintStore.js"></script>*@
+<script src="~/js/common/ResizeTbl.js"></script>
+<script src="~/js/Print/Print.js"></script>

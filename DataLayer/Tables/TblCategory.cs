@@ -11,9 +11,12 @@ namespace DataLayer.Tables
     public class TblCategory
     {
         public int id { get; set; }
-        [Required(AllowEmptyStrings = false)]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+     
         public string cat_name { get; set; }
+        public DateTime? AddedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
+        public int is_deleted { get; set; }
         public virtual List<TblSubCategory> TblSubCategory { get; set; }
     }
 }

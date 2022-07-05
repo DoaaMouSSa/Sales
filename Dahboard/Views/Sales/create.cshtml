@@ -1,0 +1,193 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<div class="col-xs-12">
+    <div class="box">
+        <div class="box-header">
+
+            <div class="container border-radius-5 bg-white padding-15 container-w-950">
+                <h3 class="text-center org"><u>انشاء فاتورة بيع</u></h3>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">كود الفاتوره</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="invCode" autofocus>
+
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">التاريخ</label>
+                        <input type="date" id="date" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfNowOutHrs">
+
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">العميل</label>
+                        <select id="CustomerDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المخزن</label>
+                        <select id="StoreDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                        </select>
+                    </div>      
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">الاجمالى قبل الخصم</label>
+                        <input type="number" value="0" class="form-control no-padding text-center border-radius-5 border-fayroz" id="Be4DiscountNumberSale" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">% الخصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="DiscountPerNumberSale" onkeyup="CalculateDiscounts();">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">استعراض الخصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="DiscountNumberCalculationSale" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">الخصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="DiscountNumberSale" onkeyup="CalculateDiscounts();">
+                    </div>
+
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">الضريبه</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="TaxNumberSale" onkeyup="CalculateDiscounts();">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">ضريبه خصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="TaxDiscountNumberSale" onkeyup="CalculateDiscounts();">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">خدمه</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="ServiceNumberSale">
+                    </div>
+                </div>
+
+
+                <br />
+                <div class="row">
+                    <table id="salesTbl" class="table table-bordered margin-bottom-0">
+                        <thead>
+                            <tr>
+                                <th class="hidden">الكود</th>
+                                <th>المنتج</th>
+                                <th>السعر</th>
+                                <th>الكميه</th>
+                                <th>الاجمالى</th>
+                                <th>حذف</th>
+                            </tr>
+                        </thead>
+                        <tbody id="salesTblBody">
+                            <tr class="item">
+                                <td class="hidden"><input type="text" class="form-control-sm border-radius-5 border-fayroz" id="1"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtProductName" autocomplete=off id="txtName1" onkeyup="GetProductsBe4AddToInvoice(this.value,this.id)"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtProductPrice" onchange='CalculateSalesinvoiceForOneProduct(this);CalculateDiscounts();' ; onkeyup="CalculateSalesinvoiceForOneProduct(this);CalculateDiscounts();" type="number" id="txtPrice1"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtProductQty" onchange='CalculateSalesinvoiceForOneProduct(this);CalculateDiscounts();' ; type="number" onkeyup="CalculateSalesinvoiceForOneProduct(this);CalculateDiscounts();" id="txtQty1"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtOneProductTotalPrice" id="txtTotalForOneProduct1" readonly></td>
+                                <td><i class='fa fa-remove hand red' onclick='DeleteRow(this);'></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="tblShowProducts" class="table table-bordered margin-right-10 width-200px hidden">
+                        <thead class="text-bold">
+                            <tr>
+                                <th class="hidden">الكود</th>
+                                <th>المنتج</th>
+                                <th>السعر</th>
+                                <th>الكميه</th>
+                            </tr>
+                        </thead>
+                        <tbody id="selectedProducts">
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <button class="btnAddIcon btn-add-row">+</button>
+                    </div>
+                    <table id="tblShowProducts" class="table table-bordered tableChild">
+
+                        <tbody id="selectedProducts">
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-1 padding-left-0">
+                                <h5> الخصم : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="discountAmount" class="red">0</h5>
+                            </div>
+                            <div class="col-md-1 padding-left-0">
+                                <h5>ضريبه ق.م : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="taxAmount" class="red">0</h5>
+                            </div>
+                            <div class="col-md-1 padding-left-0">
+                                <h5>ضريبه خصم : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="discountTaxAmount" class="red">0</h5>
+                            </div>
+                            <div class="col-md-1 padding-left-0">
+                                <h5>صافى : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="FinalTotalInvoice" class="red">0</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <button class="btn-block btn-green text-bold" onclick="AddSales();" id="btnExcuteSales">تنفيذ</button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <a class="btn-block btn-green text-bold" onclick="Print();">طباعه</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-8"></div>
+                            <div class="col-md-4">
+                                <button class="btn-block btn-green text-bold margin-top-25" onclick="createNewSalesInvoice();">فاتوره مبيعات جديده</button>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/js/Customer/CustomerForDD.js"></script>
+<script src="~/js/sales/autoCompleteProducts.js"></script>
+<script src="~/js/Dates/Date.js"></script>
+<script src="~/js/Store/LoadStoreForComboBox.js"></script>
+<script src="~/js/sales/AddSales.js"></script>
+<script src="~/js/sales/NewSaleInvoice.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/js/Print/PrintOneInvoice.js"></script>
+<script src="~/js/common/Buttons.js"></script>
+<script src="~/js/sales/InvoiceCode.js"></script>
+<script src="~/js/sales/Discounts.js"></script>
+<script src="~/js/sales/PrintCustomInv.js"></script>

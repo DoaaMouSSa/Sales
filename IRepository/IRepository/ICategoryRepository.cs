@@ -11,8 +11,8 @@ namespace IRepository.IRepository
     {
         public Response<dtoCategory> Add(dtoCategory cat);
         public dtoCategory Edit(dtoCategory cat);
-        public bool Delete(int id);
+        public Response<bool> Delete(int id);
         public List<dtoCategory> Read();
-        public string ReadExcelFile();
+
     }
 }

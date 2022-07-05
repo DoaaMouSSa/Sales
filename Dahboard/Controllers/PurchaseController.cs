@@ -12,5 +12,14 @@ namespace Dahboard.Controllers
         {
             return View();
         }
+        public IActionResult Create()
+        {
+            return View();
+        }
+        public IActionResult PurchaseInvoiceDetails()
+        {
+            return View();
+        }
+        
     }
 }

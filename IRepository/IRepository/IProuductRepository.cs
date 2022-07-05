@@ -4,14 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Dto.Dto;
-
+using DtoReport.Dto;
 namespace IRepository.IRepository
 {
    public interface IProuductRepository
     {
-        public dtoProductForAdd Add(dtoProductForAdd dto);
+        public Response<dtoProductForAdd> Add(dtoProductForAdd dto);
         public dtoProductForAdd Edit(dtoProductForAdd dto);
-        public bool Delete(int id);
+        public Response<bool> Delete(int id);
         public List<dtoProductForShow> Read();
+        public List<dtoProductReport> ReadForReport();
+        public Response<List<dtoProductForShowBeforeAddToInvoice>> ReadForInvoiceAdd(string character, int store_id);
     }
 }

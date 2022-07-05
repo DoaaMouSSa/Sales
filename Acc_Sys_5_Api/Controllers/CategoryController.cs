@@ -23,14 +23,10 @@ namespace Acc_Sys_5_Api.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryRepository categoryRepository;
-        private IConfiguration Configuration;
-        private readonly IHostingEnvironment Environment;
 
-        public CategoryController(IHostingEnvironment _environment,IConfiguration _configuration, ICategoryRepository _categoryRepository)
+        public CategoryController(ICategoryRepository _categoryRepository)
         {
             categoryRepository = _categoryRepository;
-            Environment = _environment;
-            Configuration = _configuration;
         }
         [Route("AddCategory")]
         [HttpPost]
@@ -48,7 +44,7 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteCategory")]
         [HttpGet]
-        public bool DeleteCat(int id)
+        public Response<bool> DeleteCat(int id)
         {
             var deleted = categoryRepository.Delete(id);
             return deleted;
