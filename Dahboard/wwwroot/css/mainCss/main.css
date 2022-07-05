@@ -1,9 +1,22 @@
 ﻿
+
 body {
-    font-family:'Times New Roman', Times, serif!important;
+    font-family: Verdana, sans-serif !important;
 }
-.hand{
-    cursor:pointer!important;
+.container-w-950 {
+    width: 950px!important;
+}
+.bg-white{
+    background-color:white;
+}
+.padding-15{
+    padding:15px;
+}
+.padding-30 {
+    padding: 30px;
+}
+.hand {
+    cursor: pointer !important;
 }
 .fayroz {
     color: #12a19b;
@@ -65,9 +78,9 @@ body {
     border:none!important;
     border-radius:1px;
 }
-    .btn-green:hover {
+   /* .btn-green:hover {
         background-color: #f69814!important;
-    }
+    }*/
 .btn-org {
     background-color: #f69814 !important;
     color: white !important;
@@ -85,19 +98,18 @@ table {
 }
 
 .table th {
-   background-color: #83b09b!important;
-    color: white;
-    font-weight:bold;
-    position:relative;
+    background-color: #f6981412 !important;
+    color: black;
+    font-weight: bold;
+    position: relative;
 }
 table tr:hover {
-    background-color: #e9edd3 !important;
-    color: #3c7f5c !important;
-    font-weight: bold !important;
+    background-color: #f6981412 !important;
+    cursor: pointer;
 }
-table tr:nth-child(odd) {
-    background-color: #e9edd3;
-}
+/*table tr:nth-child(even) {
+    background-color: #c3e6cb;
+}*/
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
@@ -149,4 +161,28 @@ checkbox:checked:before {
 
 .margin-1{
     margin:1px;
+}
+.margin-top-25 {
+    margin-top: 25px!important;
+}
+.margin-bottom-0{
+    margin-bottom:0!important;
+}
+.margin-right-10{
+    margin-right:10px!important;
+}
+.margin-left-10 {
+    margin-left: 10px !important;
+}
+.width-200px{
+    width:400px!important;
+}
+.border-0{
+    border:none!important;
+}
+.test{
+    background-color:red!important;
+}
+.bgBlack{
+    background-color:black!important;
 }

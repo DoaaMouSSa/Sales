@@ -27,7 +27,7 @@
                     </div>
                     <div class="col-md-4"></div>
                     <div class="col-md-3">
-                        <button class="btn-green btn-block font-16 font-600" onclick="print_element('storeTbl');">طباعه بيانات المخزن</button>
+                        <button class="btn-green btn-block font-16 font-600" id="btnPrint" onclick="exportToPdf();">طباعه بيانات المخزن</button>
                     </div>
                 </div>
                 <div class="row">
@@ -66,15 +66,15 @@
                     </div>
                     <div class="col-md-2 padding-left-0">
                         <input class="form-check-input border-fayroz" type="checkbox" id="chHasQty" value="option1" onchange="GetProductsWithNoQty();">
-                        <label class="form-check-label deep-fayroz" for="inlineCheckbox1">اصناف لديها مخزون</label>
+                        <label class="form-check-label deep-fayroz" for="chHasQty">اصناف لديها مخزون</label>
                     </div>
                     <div class="col-md-2 padding-left-0 padding-right-0">
                         <input class="form-check-input border-fayroz" type="checkbox" id="chNoQty" value="option1" onchange="GetProductsWithHasQty();">
-                        <label class="form-check-label deep-fayroz" for="inlineCheckbox2">اصناف نفذ رصيدها</label>
+                        <label class="form-check-label deep-fayroz" for="chNoQty">اصناف نفذ رصيدها</label>
                     </div>
                     <div class="col-md-2 padding-left-0 padding-right-0">
                         <input class="form-check-input border-fayroz" type="checkbox" id="chAnyQty" value="option1" onchange="GetProductsWithAnyQty();">
-                        <label class="form-check-label deep-fayroz" for="inlineCheckbox2">جميع الارصده</label>
+                        <label class="form-check-label deep-fayroz" for="chAnyQty">جميع الارصده</label>
                     </div>
 
                 </div>
@@ -112,6 +112,6 @@
 <script src="~/js/StoreDetails/LoadDefault.js"></script>
 <script src="~/js/StoreDetails/SearchInStoreByVal.js"></script>
 <script src="~/js/StoreDetails/FilterByQty.js"></script>
-<script src="~/js/StoreDetails/PrintStore.js"></script>
+@*<script src="~/js/StoreDetails/PrintStore.js"></script>*@
 <script src="~/js/common/ResizeTbl.js"></script>
-
+<script src="~/js/Print/Print.js"></script>

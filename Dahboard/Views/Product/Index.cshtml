@@ -14,10 +14,19 @@
                     </div>
                     <div class="col-1"></div>
                     <div class="col-md-2">
-                        <a class="btn-green btn-block float-right text-center" onclick="LoadProducts();">ابدأ البحث</a>
+                        <button class="btn-green btn-block float-right text-center" onclick="LoadProducts();">ابدأ البحث</button>
                     </div>
+                    <div class="col-md-2">
+                        <a class="btn-green btn-block float-right text-center" href="https://localhost:44315/api/Report/Report/xls">تصدير</a>
                     </div>
-                </div><!-- /.box-header -->
+                    <div class="col-md-2">
+                        <input type="file" class="form-control" accept=".xls,.xlsx" id="SelectedExcel"/>
+                    </div>
+                    <div class="col-md-2">
+                        <button class="btn-green btn-block float-right text-center" id="btnImport">ترحيل</button>
+                    </div>
+                </div> 
+            </div><!-- /.box-header -->
             <!-- Modal For Add -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -32,12 +41,12 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="SubCatsForComboBOx" class="fayroz">التصنيف</label>
-                                    <select name="sub_cat" id="SubCatsForComboBOx" class="form-control no-padding border-radius-5 border-fayroz">
+                                    <select onkeypress=PressEnter(event,'btnSave') name="sub_cat" id="SubCatsForComboBOx" class="form-control no-padding border-radius-5 border-fayroz">
                                     </select>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="product_name" class="fayroz">اسم الصنف</label>
-                                    <input onkeydown="clearWarningMsg('#validProductName'), clearWarningMsg('#validProductCode')" type="text" class="form-control border-radius-5 border-fayroz" id="product_name" placeholder="اسم الصنف" autocomplete="off" />
+                                    <input onkeypress=PressEnter(event,'btnSave') onkeydown="clearWarningMsg('#validProductName')" type="text" class="form-control border-radius-5 border-fayroz" id="product_name" placeholder="اسم الصنف" autocomplete="off" />
                                     <p class="text-danger" id="validProductName"></p>
                                 </div>
                             </div>
@@ -45,12 +54,14 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="product_code" class="fayroz">الكود</label>
-                                    <input onkeydown="clearWarningMsg('#validProductName'), clearWarningMsg('#validProductCode')" type="text" class="form-control border-radius-5 border-fayroz" id="product_code" placeholder="الكود" autocomplete="off" />
+                                    <input onkeypress=PressEnter(event,'btnSave') onkeydown="clearWarningMsg('#validProductCode')" type="text" class="form-control border-radius-5 border-fayroz" id="product_code" placeholder="الكود" autocomplete="off" />
                                     <p class="text-danger" id="validProductCode"></p>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="product_barcode" class="fayroz">الباركود </label>
-                                    <input type="text" class="form-control border-radius-5 border-fayroz" id="product_barcode" placeholder="الباركود" autocomplete="off" />
+                                    <input type="text" onkeypress=PressEnter(event,'btnSave') onkeydown="clearWarningMsg('#validProductBarcode')" class="form-control border-radius-5 border-fayroz" id="product_barcode" placeholder="الباركود" autocomplete="off" />
+                                    <p class="text-danger" id="validProductBarcode"></p>
+
                                 </div>
                             </div>
                             <br />
@@ -61,13 +72,13 @@
                                 </div>
                                 <div class="col-md-6">
                                     <label for="sale_price" class="fayroz">سعر البيع </label>
-                                    <input type="number" placeholder="سعر البيع" min="0" class="form-control border-radius-5 border-fayroz" id="sale_price" />
+                                    <input type="number" onkeypress=PressEnter(event,'btnSave') placeholder="سعر البيع" min="0" class="form-control border-radius-5 border-fayroz" id="sale_price" />
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn-org" onclick="AddProduct();">حفظ</button>
+                            <button type="button" class="btn-org" id="btnSave" onclick="AddProduct();">حفظ</button>
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
                         </div>
                     </div>
@@ -75,44 +86,52 @@
             </div>
             <!-----end modal for Add-->
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-1 padding-left-0 width-7p5">
+                    <h5 class="deep-fayroz">القسم</h5>
+                </div>
+                <div class="col-md-3 padding-left-0">
                     <select id="departments" class="form-control no-padding text-center border-radius-5 border-fayroz" onchange="FilterSubCat(this.value)">
-                        <option value="0">بدون قسم</option>
                     </select>
                 </div>
-                <div class="col-md-4">
-                    <select id="SubCatFilterPro" class="form-control no-padding text-center border-radius-5 border-fayroz"></select>
+                <div class="col-md-1 padding-left-0 width-7p5">
+                    <h5 class="deep-fayroz">التصنيف</h5>
                 </div>
-                <div class="col-md-4">
-                    <button onclick="resetSearch();" class="btn btn-success">clear search</button>
+                <div class="col-md-3 padding-left-0">
+                    <select id="SubCatFilterPro" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <button onclick="resetSearch();" class="btn-green btn-block">حذف البحث</button>
                 </div>
             </div>
+
             <br />
             <div class="row">
-                
+
                 <div class="col-md-1 padding-left-0 width-7p5">
                     <h5 class="deep-fayroz">اسم الصنف</h5>
                 </div>
                 <div class="col-md-3 padding-left-0">
-                    <input type="text" id="product_name_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByName()" />
+                    <input type="text" id="product_name_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByName(this.value)" />
                 </div>
                 <div class="col-md-1 padding-left-0 width-3p5">
                     <h5 class="deep-fayroz">باركود</h5>
                 </div>
                 <div class="col-md-3 padding-left-0">
-                    <input type="number" id="product_barcode_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByBarCode()" />
+                    <input type="number" id="product_barcode_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByBarCode(this.value)" />
                 </div>
                 <div class="col-md-1 padding-left-0 width-3p5">
                     <h5 class="deep-fayroz">كود</h5>
                 </div>
                 <div class="col-md-3 padding-left-0">
-                    <input type="text" id="product_code_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByCode()" />
+                    <input type="text" id="product_code_box" class="form-control border-radius-5 border-fayroz" onkeyup="SearchByCode(this.value)" />
                 </div>
             </div>
-          <br />
+            <br />
 
             <div class="box-body">
-                <table id="example2" class="table table-bordered table-hover">
+
+                <table id="productTbl" class="table table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>الصنف</th>
@@ -129,7 +148,7 @@
                     <tbody class="text-bold" id="product_data">
                     </tbody>
                     <tfoot>
-                      
+
                     </tfoot>
                 </table>
             </div><!-- /.box-body -->
@@ -137,7 +156,11 @@
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js" defer></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js" defer></script>
+<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js" defer></script>
 <script src="~/js/Product/IndexProduct.js"></script>
 <script src="~/js/Product/LoadSubCatsForCombobox.js"></script>
 <script src="~/js/Product/AddProduct.js"></script>
@@ -150,3 +173,5 @@
 <script src="~/js/common/ClearValidateWarning.js"></script>
 <script src="~/js/ProductSearch/ClearSearch.js"></script>
 <script src="~/js/HandleModal/getFocusElements.js"></script>
+<script src="~/js/HandleModal/EnterPress.js"></script>
+<script src="~/js/Product/DataExcel.js"></script>

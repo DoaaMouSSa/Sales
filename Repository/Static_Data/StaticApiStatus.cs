@@ -66,5 +66,12 @@ namespace Repository.Static_Data
             public static string MessageEn = "empty";
             public static string MessageAr = "غير متوفر أصناف بالمخزن";
         }
+        public static class ApiNoCount
+        {
+            public static string Code = "Empty";
+            public static string Status = "Empty";
+            public static string MessageEn = "Empty";
+            public static string MessageAr = "فارغ";
+        }
     }
 }

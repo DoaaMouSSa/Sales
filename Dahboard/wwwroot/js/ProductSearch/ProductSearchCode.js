@@ -4,7 +4,7 @@
     if (subcat_val == "") subcat_val = 0
     int_sub_val = parseInt(subcat_val);
 
-    if (value != null) {
+    if (value != "") {
         $('#product_data').empty();
         $('#filter_product_data_purchase').empty();
         $.ajax({
@@ -31,6 +31,8 @@
                 //$("#").css("visibility", "hidden");
             }
         });
+    } else {
+        LoadProducts();
     }
 }
 function GetData(id, name, price) {

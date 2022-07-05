@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
+    <meta charset='UTF-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -34,8 +34,14 @@
     <link rel="stylesheet" href="~/DashboardAssests/dist/fonts/fonts-fa.css">
     <link rel="stylesheet" href="~/DashboardAssests/dist/css/bootstrap-rtl.min.css">
     <link rel="stylesheet" href="~/DashboardAssests/dist/css/rtl.css">
+    <link rel="stylesheet" src="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" src="https://cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css" />
     <link rel="stylesheet" href="~/css/mainCss/main.css" />
     <link rel="stylesheet" href="~/css/mainCss/rightMenu.css" />
+    <link rel="stylesheet" href="~/css/mainCss/tables.css" />
+    <link rel="stylesheet" href="~/css/mainCss/main.css" />
+    <link rel="stylesheet" href="~/css/mainCss/Button.css" />
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -360,21 +366,30 @@
                                    asp-action="Index"><i class="fa fa-circle-o"></i>مشتريات</a>
                             </li>
                             <li>
-                                <a asp-controller="purchase"
-                                   asp-action="Create"><i class="fa fa-circle-o"></i>new purchase</a>
-                            </li>
-                            <li>
-                                <a asp-controller="test"
-                                   asp-action="Index"><i class="fa fa-shopping-cart"></i>مرتجع مشتريات</a>
+                                <a asp-controller="Purchase"
+                                   asp-action="Create"><i class="fa fa-envelope-o"></i>فاتوره شراء</a>
                             </li>
                             <li>
                                 <a asp-controller="sales"
                                    asp-action="Index"><i class="fa fa-gears"></i>مبيعات</a>
                             </li>
                             <li>
-                                <a asp-controller="test"
-                                   asp-action="Index"><i class="fa fa-gears"></i>مرتجع مبيعات</a>
+                                <a asp-controller="Sales"
+                                   asp-action="Create"><i class="fa fa-envelope-o"></i>فاتوره مبيعات</a>
                             </li>
+                            <li>
+                                <a asp-controller="SalesReturn"
+                                   asp-action="Create"><i class="fa fa-gears"></i>فاتوره مرتجع بيع </a>
+                            </li>
+                            <li>
+                                <a asp-controller="PurchaseReturn"
+                                   asp-action="Create"><i class="fa fa-gears"></i>فاتوره مرتجع شراء </a>
+                            </li>
+                            @*<li>
+            <a asp-controller="SalesReturn"
+               asp-action="Index"><i class="fa fa-gears"></i>فواتير مرتجع المبيعات</a>
+        </li>*@
+
                             <li>
                                 <a asp-controller="StoreDetails"
                                    asp-action="Index"><i class="fa fa-gears"></i>المخزون</a>
@@ -393,12 +408,12 @@
                 @RenderBody()
             </section><!-- /.content -->
         </div><!-- /.content-wrapper -->
-        <footer class="main-footer">
+        @*<footer class="main-footer">
             <div class="pull-left hidden-xs">
                 <b>Version</b> 2.2.0
             </div>
             <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
-        </footer>
+        </footer>*@
         <div class="control-sidebar-bg"></div>
     </div><!-- ./wrapper -->
     <!-- jQuery 2.1.4 -->

@@ -19,5 +19,9 @@ namespace DataLayer.Tables
         [ForeignKey(nameof(TblStore))]
         public int store_id { get; set; }
         public virtual TblStore TblStore { get; set; }
+        public int is_deleted { get; set; }
+        public DateTime? AddedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
     }
 }

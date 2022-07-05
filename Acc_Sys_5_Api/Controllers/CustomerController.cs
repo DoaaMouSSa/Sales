@@ -38,22 +38,36 @@ namespace Acc_Sys_5_Api.Controllers
         [HttpPost]
         public dtoCustomer EditCustomer(dtoCustomer dto)
         {
-            var customer = customerRepository.Edit(dto);
-            return customer;
+            var response = customerRepository.Edit(dto);
+            return response;
         }
         [Route("DeleteCustomer")]
         [HttpGet]
-        public bool DeleteCustomer(int id)
+        public Response<bool> DeleteCustomer(int id)
         {
-            var deleted = customerRepository.Delete(id);
-            return deleted;
+            var response = customerRepository.Delete(id);
+            return response;
         }
         [Route("GetAllCustomer")]
         [HttpGet]
         public List<dtoCustomer> GetAllCustomer()
         {
-            var allcustomer = customerRepository.Read();
-            return allcustomer;
+            var response = customerRepository.Read();
+            return response;
+        }
+        [Route("GetAllCustomerForDD")]
+        [HttpGet]
+        public Response<List<dtoCustomerDD>> GetAllCustomerForDD()
+        {
+            var response = customerRepository.ReadForDD();
+            return response;
+        }
+        [Route("SearchCustomer")]
+        [HttpGet]
+        public Response<List<dtoCustomer>> SearchCustomer(string val)
+        {
+            var response = customerRepository.SearchCustomer(val);
+            return response;
         }
     }
 }

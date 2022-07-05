@@ -3,156 +3,131 @@
 *@
 @{
 }
-<link href="~/css/CategoryCss/Category.css" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
 
 <div class="row">
     <div class="col-xs-12">
         <div class="box" id="container">
             <div class="box-header">
                 <div class="row">
-                    <div class="col-md-5">
-                        <h3 class="box-title">فاتوره شراء</h3>
+                    <div class="row text-center">
+                        <h3 class="text-center org" onclick="getValueOfCheckbox();">فواتير المشتريات</h3>
                     </div>
-                    <div class="col-md-7">
-                        <!---لاظهار شاشه المنتجات-->
-                        <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal" autofocus>اضافه</button>
-                        <!-- Modal For products search-->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document" style="width:1000px;">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">بحث الأصناف وقائمه الاسعار</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label for="departments">القسم</label>
-                                                <select id="departments" class="form-control no-padding" onchange="FilterSubCat(this.value)">
-                                                    <option value="0">بدون قسم</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="SubCatFilterPro">التصنيف</label>
-                                                <select id="SubCatFilterPro" class="form-control no-padding"></select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button onclick="resetSearch();" class="btn btn-success">clear search</button>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label for="product_name_box">اسم الصنف</label>
-                                                <input onkeyup="SearchByName(this.value)" type="text" class="form-control" id="product_name_box" placeholder="اسم الصنف" autocomplete="off" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="product_barcode_box">باركود الصنف</label>
-                                                <input onkeyup="SearchByBarCode(this.value)" type="number" class="form-control" id="product_barcode_box" placeholder="الباركود" autocomplete="off" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="product_code_box">كود الصنف</label>
-                                                <input onkeyup="SearchByCode(this.value)" type="text" class="form-control" id="product_code_box" placeholder="الكود" autocomplete="off" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="box-body">
-                                                <table id="example2" class="table table-bordered table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>الصنف</th>
-                                                            <th>الكود</th>
-                                                            <th>الباركود</th>
-                                                            <th>تكلفه السوقيه</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="filter_product_data_purchase">
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>End</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div><!-- /.box-body -->
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!----------------------------------------------------->
-                        <!-----end modal for products search-->
 
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المورد</label>
+                        <select id="SupplierDD" onchange="FilterPurchase();" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل الموردين</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المخزن</label>
+                        <select id="StoreDD" onchange="FilterPurchase();" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل المخازن</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">بدايه التاريخ</label>
+                        <input type="datetime-local" onchange="FilterPurchase();" id="fromDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfMonthBefore">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">نهايه التاريخ</label>
+                        <input type="datetime-local" onchange="FilterPurchase();" id="toDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfNow">
+
+                    </div>
+                    <div class="col-md-2">
+                        <button onclick="getAllPurchase();" id="btnFilterPurchase" class="btn-green btn-block margin-top-25 font-16 font-600">البحث</button>
                     </div>
                 </div>
                 <br />
                 <div class="row">
                     <div class="col-md-2">
-                        <input class="form-control" type="text" placeholder="رقم المرجع" />
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxAllPurchase" value="2" onclick="check(this); FilterPurchase();" checked>
+                        <label class="form-check-label deep-fayroz hand" for="chboxAllPurchase">الجميع</label>
                     </div>
                     <div class="col-md-2">
-                        <input class="form-control" type="text" placeholder="كود المورد" />
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxNotDeletdPurchase" value="0" onclick="check(this); FilterPurchase();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxNotDeletdPurchase">معتمد</label>
                     </div>
                     <div class="col-md-2">
-                        <input class="form-control" type="text" placeholder="اسم المورد" />
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxDeletdPurchase" value="1" onclick="check(this); FilterPurchase();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxDeletdPurchase">ملغى</label>
                     </div>
-                    <div class="col-md-2">
-                        <select name="stores" id="stores" class="form-control no-padding">
-                        </select>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="col-md-2 padding-left-0">
+                            <h5 class="deep-fayroz">من</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" id="codeStart" onkeyup="FilterPurchase();" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        <button  class="btn btn-primary" id="btnPrintPurchaseInvoice" disabled>طباعه الفاتوره</button>
+
+                    <div class="col-md-3">
+                        <div class="col-md-2 padding-left-0">
+                            <h5 class="deep-fayroz">الى</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" id="codeEnd" onkeyup="FilterPurchase();" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
                     </div>
-                    <div class="col-md-2">
-                        <button class="btn btn-primary" id="btnGoToStore" onclick="AddPurchase();" disabled>تنفيذ</button>
-                        <p class="text-success text-bold" id="message_confirm_purchase"></p>
-                    </div>
-                  
+
+                </div>
+                <div class="col-md-2">
+                    <button onclick="Print();" class="btn-green btn-block margin-top-25 font-16 font-600">طباعه</button>
                 </div>
             </div><!-- /.box-header -->
-            <!-- Modal For Add -->
-            <!----------------------------------------------------->
-            <!-----end modal for Add-->
+
             <div class="box-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" id="purchaseTbl">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>الاسم</th>
-                            <th>الكميه</th>
-                            <th>السعر</th>
+                            <th>المرجع</th>
+                            <th>المورد</th>
+                            <th>المخزن</th>
                             <th>الاجمالى</th>
+                            <th>نوع العمليه</th>
+                            <th>التاريخ</th>
                             <th>حذف</th>
                         </tr>
                     </thead>
-                    <tbody id="purchaseTbl">
+                    <tbody id="purchase_data">
                     </tbody>
-                    <tfoot id="test">
-                        <tr class="hidden" id="purchaseTotalRow">
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>اجمالى المشتريات</th>
-                            <th id="purchaseTotalNum">0</th>
-                        </tr>
+                    <tfoot>
+
                     </tfoot>
                 </table>
+
             </div><!-- /.box-body -->
         </div><!-- /.box -->
     </div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/purchase/index.js"></script>
+<script src="~/js/Supplier/SupplierForDD.js"></script>
 <script src="~/js/Store/LoadStoreForComboBox.js"></script>
-<script src="~/js/SubCat/LoadCategoriesToComboBox.js"></script>
-<script src="~/js/SubCat/FilterSubCatByCat.js"></script>
-<script src="~/js/ProductSearch/ClearSearch.js"></script>
-<script src="~/js/purchase/AddPurchase.js"></script>
-<script src="~/js/purchase/SearchByBarCodeForPurchase.js"></script>
-<script src="~/js/purchase/SearchByNameForPurchase.js"></script>
-<script src="~/js/purchase/SearchByCodeForPurchase.js"></script>
+<script src="~/js/purchase/FilterPurchase.js"></script>
+<script src="~/js/Supplier/SupplierSearch.js"></script>
+<script src="~/js/purchase/DeletePurchase.js"></script>
+<script src="~/js/Dates/Date.js"></script>
+<script src="~/js/common/CheckBoxes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/js/Print/PrintTbls.js"></script>
+<script src="~/js/purchase/FilterDeletedOnNot.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script src="~/js/common/SearchComboBox.js"></script>
+<script src="~/js/purchase/MinMaxInvCode.js"></script>
+<script>
+    function Print() {
+        window.open("Report/PurchaseInvoices?url=" + api + "&sup=" + supId + "&store=" + storeId + "&fromDate=" + fromDate + "&toDate=" + toDate + "&fromCode=" + fromCode + "&toCode=" + toCode + "&isDel=" + isDeleted, "_blank");
+   /*     location.href = "Report/PurchaseInvoices?url=" + api + "&sup=" + supId + "&store=" + storeId + "&fromDate=" + fromDate + "&toDate=" + toDate;*/
+    }
+</script>

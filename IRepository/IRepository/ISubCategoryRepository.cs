@@ -10,7 +10,7 @@ namespace IRepository.IRepository
     {
         public Response<dtoSubCategoryForAdd> Add(dtoSubCategoryForAdd dto);
         public dtoSubCategoryForAdd Edit(dtoSubCategoryForAdd dto);
-        public bool Delete(int id);
+        public Response<bool> Delete(int id);
         public List<dtoSubCategoryForShow> Read();
         public List<dtoSubCategoryForShow> FilterSubCatOnCat(int cat);
     }

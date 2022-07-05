@@ -25,11 +25,14 @@
             contentType: "application/json",
             data: JSON.stringify(formData),
             success: function (data) {
-                if (data.payload == null) {
-                    clearWarningMsg('#validProductName');
+                if (data.code == "21") {
                     clearWarningMsg('#validProductCode');
                     $('#validProductCode').append(data.message);
-                } else {
+                } else if (data.code == "25"){
+                    clearWarningMsg('#validProductBarcode');
+                    $('#validProductBarcode').append(data.message);
+                }
+                else {
                     $('#exampleModal').modal('hide');
                     location.reload();
                 }

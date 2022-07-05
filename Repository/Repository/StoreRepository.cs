@@ -17,25 +17,49 @@ namespace Repository.Repository
         {
             db = _db;
         }
-        public dtoStore Add(dtoStore dto)
+        public Response<dtoStore> Add(dtoStore dto)
         {
+            Response<dtoStore> res = new Response<dtoStore>();
             if (dto != null)
             {
-                var newStore = new TblStore()
+                if (dto.store_name != "")
                 {
-                    id = dto.id,
-                    store_name = dto.store_name
-                };
-                db.tblStore.Add(newStore);
-                db.SaveChanges();
-                dto.id = newStore.id;
-                dto.store_name = newStore.store_name;
+                    if (db.tblStore.Any(c => c.store_name == dto.store_name))
+                    {
+                        res.code = Static_Data.DuplicateData.DuplicateName.Code;
+                        res.status = Static_Data.DuplicateData.DuplicateName.Status;
+                        res.message = Static_Data.DuplicateData.DuplicateName.MessageAr;
+                    }
+                    else
+                    {
+                        var newStore = new TblStore()
+                        {
+                            id = dto.id,
+                            store_name = dto.store_name
+                        };
+                        db.tblStore.Add(newStore);
+                        db.SaveChanges();
+                        dto.id = newStore.id;
+                        dto.store_name = newStore.store_name;
+                    }
+                }
+                else
+                {
+                    res.code = Static_Data.StaticApiStatus.ApiRequired.Code;
+                    res.status = Static_Data.StaticApiStatus.ApiRequired.Status;
+                    res.message = Static_Data.StaticApiStatus.ApiRequired.MessageAr;
+
+                }
             }
-            return dto;
+
+
+            return res;
         }
 
-        public bool Delete(int id)
+        public Response<bool> Delete(int id)
         {
+            Response<bool> response = new Response<bool>();
+
             bool deleted = false;
             if (id != 0)
             {
@@ -44,7 +68,7 @@ namespace Repository.Repository
                 db.SaveChanges();
                 deleted = true;
             }
-            return deleted;
+            return response;
         }
 
         public dtoStore Edit(dtoStore dto)
@@ -63,14 +87,18 @@ namespace Repository.Repository
             return dto;
         }
 
-        public List<dtoStore> Read()
+        public Response<List<dtoStore>> Read()
         {
+            Response<List<dtoStore>> res = new Response<List<dtoStore>>();
             var allstore = (from s in db.tblStore
                           select new dtoStore(){
                         id = s.id,
                         store_name = s.store_name
                           }).ToList();
-            return allstore;
+            res.code = Static_Data.StaticApiStatus.ApiSuccess.Code;
+            res.status = Static_Data.StaticApiStatus.ApiSuccess.Status;
+            res.payload = allstore;
+            return res;
         }
     }
 }

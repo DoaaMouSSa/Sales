@@ -34,10 +34,12 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteProduct")]
         [HttpGet]
-        public bool DeleteProduct(int id)
+        public Response<bool> DeleteProduct(int id)
         {
+            Response<bool> response = new Response<bool>();
+            
             var deleted = prouductRepository.Delete(id);
-            return deleted;
+            return response;
         }
         [Route("GetAllProduct")]
         [HttpGet]
@@ -46,5 +48,13 @@ namespace Acc_Sys_5_Api.Controllers
             var allpro = prouductRepository.Read();
             return allpro;
         }
+        [Route("GetAllProductBeforeAddToInvoice")]
+        [HttpGet]
+        public Response<List<dtoProductForShowBeforeAddToInvoice>> GetAllProductBeforeAddToInvoice(string character, int store_id)
+        {
+            var allpro = prouductRepository.ReadForInvoiceAdd(character, store_id);
+            return allpro;
+        }
+
     }
 }

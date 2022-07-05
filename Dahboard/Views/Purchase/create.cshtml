@@ -3,62 +3,190 @@
 *@
 @{
 }
-<table id="selectedProducts" class="table table-bordered">
-    <thead>
-        <tr>
-            <th style="width:5%;">#</th>
-       
-            <th>
-              المنتج
-            </th>
-            <th>
-                @*@Html.DisplayNameFor(model => model.SaleOrderDetail.Quantity)*@
-                الكميه
-            </th>
-            <th>
-                السعر
-            </th>
-            <th>
-               اجمالى السعر
-            </th>
 
-            <th>
-                حذف
-            </th>
+<div class="col-xs-12">
+    <div class="box">
+        <div class="box-header">
+            <div class="container border-radius-5 bg-white padding-15 container-w-950">
+                <h3 class="text-center org" onclick="getdate();"><u>انشاء فاتورة شراء</u></h3>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">كود </label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="invId" autofocus>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">كود الفاتوره</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="invCode" autofocus>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">التاريخ</label>
+                        <input type="date" id="date" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfNowOutHrs">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المورد</label>
+                        <select id="SupplierDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المخزن</label>
+                        <select id="StoreDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                        </select>
+                    </div>
 
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td id="SNo0">1</td>
-            <td style="display:none;"><input type="hidden" name="SaleOrderDetail.Index" value="0" /></td>
-            <td style="display:none;"><input type="text" readonly class="form-control classBGcolor" name="SaleOrderDetail[0].ProductId" id="idn0"></td>
-          
-            <td><input type="text" autocomplete="off" class="form-control" name="name0" id="name0" placeholder="Type product name" data-toggle="tooltip" data-placement="top" title="Type product name"></td>
-            <td><input type="text" autocomplete="off" class="form-control classBGcolor" name="SaleOrderDetail[0].SalePrice" id="salePrice0"></td>
-            <td><input type="text" autocomplete="off" class="form-control" name="SaleOrderDetail[0].Quantity" id="quantity0"></td>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">الاجمالى قبل الخصم</label>
+                        <input type="number" value="0" class="form-control no-padding text-center border-radius-5 border-fayroz" id="Be4DiscountNumberPur" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">% الخصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="DiscountPerNumberPur" onkeyup="CalculateDiscounts();">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">استعراض الخصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="DiscountNumberCalculationPur" readonly>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">الخصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="DiscountNumberPur" onkeyup="CalculateDiscounts();">
+                    </div>
 
-            <td>
-                <select class="form-control" name="SaleOrderDetail[0].IsPack" id="isPack0">
-                    <option value="false">Piece</option>
-                    <option value="true" selected>Pack</option>
-                </select>
-            </td>
-            <td><input type="text" readonly autocomplete="off" class="form-control" name="SaleOrderDetail[0].PerPack" id="perPack0"></td>
-            <td><input type="text" readonly class="form-control classBGcolor" name="itemTotal0" id="itemTotal0" tabindex="-1"></td>
-            <td style="display:none;">
-                <select class="form-control" name="SaleOrderDetail[0].SaleType" id="saleType0">
-                    <option value="false" selected>Order</option>
-                    <option value="true">Return</option>
-                </select>
-            </td>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">الضريبه</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="TaxNumberPur" onkeyup="CalculateDiscounts();">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">ضريبه خصم</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="TaxDiscountNumberPur" onkeyup="CalculateDiscounts();">
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">خدمه</label>
+                        <input type="number" class="form-control no-padding text-center border-radius-5 border-fayroz" id="ServiceNumberPur">
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <table id="purchaseTbl" class="table table-bordered margin-bottom-0">
+                        <thead>
+                            <tr>
+                                <th class="hidden">الكود</th>
+                                <th>المنتج</th>
+                                <th>السعر</th>
+                                <th>الكميه</th>
+                                <th>الاجمالى</th>
+                                <th>حذف</th>
+                            </tr>
+                        </thead>
+                        <tbody id="purchaseTblBody">
+                            <tr class="item">
+                                <td class="hidden"><input type="text" class="form-control-sm border-radius-5 border-fayroz" id="1"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtProductName" autocomplete=off id="txtName1" onkeyup="GetProductsBe4AddToInvoice(this.value,this.id)"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtProductPrice" onchange='CalculatePurchaseinvoiceForOneProduct(this); CalculateDiscounts();' ; onkeyup="CalculatePurchaseinvoiceForOneProduct(this); CalculateDiscounts();" type="number" id="txtPrice1"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtProductQty" onchange='CalculatePurchaseinvoiceForOneProduct(this);CalculateDiscounts()' ; type="number" onkeyup="CalculatePurchaseinvoiceForOneProduct(this); CalculateDiscounts();" id="txtQty1"></td>
+                                <td><input class="form-control-sm border-radius-5 border-fayroz txtOneProductTotalPrice" id="txtTotalForOneProduct1" readonly></td>
+                                <td><i class='fa fa-remove hand red' onclick='DeleteRow(this);'></i></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table id="tblShowProducts" class="table table-bordered margin-right-10 width-200px hidden">
+                        <thead class="text-bold">
+                            <tr>
+                                <th class="hidden">الكود</th>
+                                <th>المنتج</th>
+                                <th>السعر</th>
+                                <th>الكميه</th>
+                            </tr>
+                        </thead>
+                        <tbody id="selectedProducts">
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <button class="btnAddIcon btn-add-row">+</button>
+                    </div>
+                    <table id="tblShowProducts" class="table table-bordered tableChild">
 
-            <td>
-              
-                <button type="button" id="delete0" class="delete btn btn-default add-new"><a class="delete" title="Delete" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a></button>
-            </td>
-        </tr>
+                        <tbody id="selectedProducts">
+                        </tbody>
+                    </table>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="col-md-1 padding-left-0">
+                                <h5> الخصم : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="discountAmount" class="red">0</h5>
+                            </div>
+                            <div class="col-md-1 padding-left-0">
+                                <h5>ضريبه ق.م : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="taxAmount" class="red">0</h5>
+                            </div>
+                            <div class="col-md-1 padding-left-0">
+                                <h5>ضريبه خصم : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="discountTaxAmount" class="red">0</h5>
+                            </div>
+                            <div class="col-md-1 padding-left-0">
+                                <h5>صافى : </h5>
+                            </div>
+                            <div class="col-md-2 padding-right-0">
+                                <h5 id="FinalTotalInvoice" class="red">0</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <button class="btn-block btn-green text-bold" onclick="AddPurchase();" id="btnExcutePurchase">تنفيذ</button>
 
-    </tbody>
+                        </div>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <a class="btn-block btn-green text-bold" onclick="Print();">طباعه</a>
+                        </div>
+                        </div>
+                    </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-4">
+                            <button class="btn-block btn-green text-bold margin-top-25" onclick="createNewPurchaseInvoice();">فاتوره شراء جديده</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                            </div>
+                        </div>
 
-</table>
+            </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/js/Supplier/SupplierForDD.js"></script>
+<script src="~/js/purchase/autoCompleteProducts.js"></script>
+<script src="~/js/Dates/Date.js"></script>
+<script src="~/js/Store/LoadStoreForComboBox.js"></script>
+<script src="~/js/purchase/AddPurchase.js"></script>
+<script src="~/js/purchase/NewPurInvoice.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/js/Print/PrintOneInvoice.js"></script>
+<script src="~/js/common/Buttons.js"></script>
+<script src="~/js/purchase/InvoiceCode.js"></script>
+<script src="~/js/purchase/Discounts.js"></script>
+<script src="~/js/purchase/PrintCustomInv.js"></script>

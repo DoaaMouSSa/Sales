@@ -19,6 +19,10 @@ namespace DataLayer.Tables
         public float sale_price { get; set; }
         [ForeignKey(nameof(TblSubCategory))]
         public int sub_cat_id { get; set; }
+        public int is_deleted { get; set; }
+        public DateTime? AddedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
         public virtual TblSubCategory TblSubCategory { get; set; }
     }
 }

@@ -22,7 +22,6 @@
         }
     });
 }
-
 var new_sub_cat_id_ForEdit;
 function GetAllSabCats(SubCatValue) {
     $('.selectSubCatForEdit').empty();

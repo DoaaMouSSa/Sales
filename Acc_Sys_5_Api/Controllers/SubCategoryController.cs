@@ -35,7 +35,7 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteSubCategory")]
         [HttpGet]
-        public bool DeleteCat(int id)
+        public Response<bool> DeleteCat(int id)
         {
             var deleted = subCategoryRepository.Delete(id);
             return deleted;

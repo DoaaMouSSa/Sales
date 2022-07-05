@@ -11,7 +11,11 @@ namespace IRepository.IRepository
     {
         public Response<dtoCustomer> Add(dtoCustomer customer);
         public dtoCustomer Edit(dtoCustomer customer);
-        public bool Delete(int id);
+        public Response<bool> Delete(int id);
         public List<dtoCustomer> Read();
+        public Response<List<dtoCustomer>> SearchCustomer(string val);
+
+        public Response<List<dtoCustomerDD>> ReadForDD();
+
     }
 }

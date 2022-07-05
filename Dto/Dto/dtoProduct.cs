@@ -37,4 +37,12 @@ namespace Dto.Dto
         public float purchase_price { get; set; }
         public float sale_price { get; set; }
     }
+    public class dtoProductForShowBeforeAddToInvoice
+    {
+        public int id { get; set; }    
+        public string product_name { get; set; }
+        public float purchase_price { get; set; }
+        public float sale_price { get; set; }
+        public int qty { get; set; }
+    }
 }

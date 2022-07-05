@@ -14,7 +14,10 @@
                     <div class="col-md-2">
                         <button class="btn-org btn-block font-16 font-600 float-left" data-toggle="modal" data-target="#exampleModal" autofocus>عميل جديد</button>
                     </div>
-
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">اسم العميل</label>
+                        <input id="CustomerVal" onkeyup="SearchCustomer(this.value);" type="text" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                    </div>
                 </div>
                 @*<i class="fa fa-user icon absolute"></i>
                     <input class='relative' style='width: 24px; height: 31px;caret-color: transparent;'>*@
@@ -33,11 +36,12 @@
                             <div class="form-group">
                                 <label for="customer_name" class="control-label fayroz">اسم العميل</label>
                                 <input dir='rtl' onkeypress=PressEnter(event,'btnSave') onkeydown="clearWarningMsg('#validcustomerName')" type="text" class="form-control border-radius-5 border-fayroz" id="customer_name" autocomplete="off" autofocus />
-                                <p class="text-danger" id="validcustomerName"></p>
+                                <p class="text-danger text-bold" id="validcustomerName"></p>
                             </div>
                             <div class="form-group">
                                 <label for="customer_code" class="control-label fayroz">كود العميل</label>
-                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" class="form-control border-radius-5 border-fayroz" id="customer_code" autocomplete="off" />
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" onkeydown="clearWarningMsg('#validcustomerCode')" class="form-control border-radius-5 border-fayroz" id="customer_code" autocomplete="off" />
+                                <p class="text-danger text-bold" id="validcustomerCode"></p>
 
                             </div>
                             <div class="form-group">
@@ -48,6 +52,26 @@
                             <div class="form-group">
                                 <label for="customer_address" class="control-label fayroz">عنوان العميل</label>
                                 <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" class="form-control border-radius-5 border-fayroz" id="customer_address" autocomplete="off" />
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_email" class="control-label fayroz">البريد الالكترونى</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" class="form-control border-radius-5 border-fayroz" id="customer_email" autocomplete="off" />
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_commercial_record" class="control-label fayroz">رقم السجل التجارى</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="number" onkeydown="clearWarningMsg('#validcustomerComm')" class="form-control border-radius-5 border-fayroz" id="customer_commercial_record" autocomplete="off" />
+                                <p class="text-danger text-bold" id="validcustomerComm"></p>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_card" class="control-label fayroz">رقم البطاقه الضريبيه</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="number" onkeydown="clearWarningMsg('#validcustomerCard')" class="form-control border-radius-5 border-fayroz" id="customer_card" autocomplete="off" />
+                                <p class="text-danger text-bold" id="validcustomerCard"></p>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="customer_type" class="control-label fayroz">نوع العميل</label>
+                                <input dir='rtl' onkeypress=PressEnter(event,'btnSave') type="text" class="form-control border-radius-5 border-fayroz" id="customer_type" autocomplete="off" />
 
                             </div>
                         </div>
@@ -68,6 +92,10 @@
                             <th>الكود</th>
                             <th>التليفون</th>
                             <th>العنوان</th>
+                            <th>البريد الالكترونى</th>
+                            <th>رقم السجل التجارى</th>
+                            <th>رقم البطاقه الضريبيه</th>
+                            <th>نوع العميل</th>
                             <th>تعديل</th>
                             <th>حذف</th>
                         </tr>
@@ -90,3 +118,4 @@
 <script src="~/js/Customer/DeleteCustomer.js"></script>
 <script src="~/js/Customer/addCustomer.js"></script>
 <script src="~/js/Customer/UpdateCutomer.js"></script>
+<script src="~/js/Customer/CustomerSearch.js"></script>

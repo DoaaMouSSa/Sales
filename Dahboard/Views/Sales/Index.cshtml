@@ -3,135 +3,102 @@
 *@
 @{
 }
+
+
 <div class="row">
     <div class="col-xs-12">
         <div class="box" id="container">
             <div class="box-header">
                 <div class="row">
-                    <div class="col-md-5">
-                        <h3 class="box-title">فاتوره بيع</h3>
-                    </div>
-                    <div class="col-md-7">
-                        <!---لاظهار شاشه المنتجات-->
-                        <button class="btn btn-primary float-left" data-toggle="modal" data-target="#exampleModal" autofocus>اضافه</button>
-                        <!-- Modal For products search-->
-                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document" style="width:1000px;">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">بحث الأصناف وقائمه الاسعار</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label for="departments">القسم</label>
-                                                <select id="departments" class="form-control no-padding" onchange="FilterSubCat(this.value)" autofocus>
-                                                    <option value="0">بدون قسم</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="SubCatFilterPro">التصنيف</label>
-                                                <select id="SubCatFilterPro" class="form-control no-padding"></select>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <button onclick="resetSearch();" class="btn btn-success">clear search</button>
-                                            </div>
-                                        </div>
-                                        <br />
-                                        <div class="row">
-                                            <div class="col-md-4">
-                                                <label for="product_name_box">اسم الصنف</label>
-                                                <input onkeyup="SearchByName(this.value)" type="text" class="form-control" id="product_name_box" placeholder="اسم الصنف" autocomplete="off" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="product_barcode_box">باركود الصنف</label>
-                                                <input onkeyup="SearchByBarCode(this.value)" type="text" class="form-control" id="product_barcode_box" placeholder="الباركود" autocomplete="off" />
-                                            </div>
-                                            <div class="col-md-4">
-                                                <label for="product_code_box">كود الصنف</label>
-                                                <input onkeyup="SearchByCode(this.value)" type="text" class="form-control" id="product_code_box" placeholder="الكود" autocomplete="off" />
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="box-body">
-                                                <table id="example2" class="table table-bordered table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th>الصنف</th>
-                                                            <th>الكود</th>
-                                                            <th>الباركود</th>
-                                                            <th>سعر البيع</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody id="filter_product_data_sales">
-                                                    </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <th>End</th>
-                                                        </tr>
-                                                    </tfoot>
-                                                </table>
-                                            </div><!-- /.box-body -->
-                                        </div>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">الغاء</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!----------------------------------------------------->
-                        <!-----end modal for products search-->
-
+                    <div class="row text-center">
+                        <h3 class="text-center org">فواتير المبيعات</h3>
                     </div>
                 </div>
                 <br />
                 <div class="row">
-                    <div class="col-md-4">
-                        <input class="form-control" type="text" placeholder="اسم العميل" />
-                    </div>
-                    <div class="col-md-4">
-                        <select name="stores" id="stores" class="form-control no-padding">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">العميل</label>
+                        <select onchange="FilterSales();" id="CustomerDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل العملاء</option>
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary" id="btnPrintSalesInvoice" disabled>طباعه الفاتوره</button>
+                        <label class="col-form-label text-center">المخزن</label>
+                        <select onchange="FilterSales();" id="StoreDD" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل المخازن</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">بدايه التاريخ</label>
+                        <input onchange="FilterSales();" type="datetime-local" id="fromDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfMonthBefore">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">نهايه التاريخ</label>
+                        <input onchange="FilterSales();" type="datetime-local" id="toDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfNow">
+
                     </div>
                     <div class="col-md-2">
-                        <button class="btn btn-primary" id="btnGoToStore" onclick="AddSales();" disabled>تنفيذ</button>
-                        <p class="text-success text-bold" id="message_confirm_sales"></p>
+                        <button onclick="getAllSales();" id="btnFilterSales" class="btn-green btn-block margin-top-25 font-16 font-600">البحث</button>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxAllSales" value="2" onclick="check(this); FilterSales();" checked>
+                        <label class="form-check-label deep-fayroz hand" for="chboxAllSales">الجميع</label>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxNotDeletdSales" value="0" onclick="check(this); FilterSales();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxNotDeletdSales">معتمد</label>
+                    </div>
+                    <div class="col-md-2">
+                        <input class="form-check-input border-fayroz hand chbox" type="checkbox" id="chboxDeletdSales" value="1" onclick="check(this); FilterSales();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxDeletdSales">ملغى</label>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="col-md-7 padding-left-0">
+                            <h5 class="deep-fayroz">بدايه المرجع</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" onkeyup="FilterSales();" id="codeStart" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="col-md-7 padding-left-0">
+                            <h5 class="deep-fayroz">نهايه المرجع</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" onkeyup="FilterSales();" id="codeEnd" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
                     </div>
 
                 </div>
+                <div class="col-md-2">
+                    <a onclick="Print();" class="btn-green margin-top-25 font-16 font-600 hand">طباعه</a>
+                </div>
             </div><!-- /.box-header -->
-            <!-- Modal For Add -->
-            <!----------------------------------------------------->
-            <!-----end modal for Add-->
+
             <div class="box-body">
-                <table class="table table-bordered table-hover">
+                <table class="table table-bordered table-hover" id="tbl">
                     <thead>
                         <tr>
-                            <th>id</th>
-                            <th>الاسم</th>
-                            <th>الكميه</th>
-                            <th>السعر</th>
+                            <th>المرجع</th>
+                            <th>العميل</th>
+                            <th>المخزن</th>
                             <th>الاجمالى</th>
+                            <th>نوع العمليه</th>
+                            <th>التاريخ</th>
                             <th>حذف</th>
                         </tr>
                     </thead>
-                    <tbody id="salesTbl">
+                    <tbody id="sales_data">
                     </tbody>
-                    <tfoot id="test">
-                        <tr class="hidden" id="salesTotalRow">
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th>اجمالى المبيعات</th>
-                            <th id="salesTotalNum">0</th>
-                        </tr>
+                    <tfoot>
+
                     </tfoot>
                 </table>
             </div><!-- /.box-body -->
@@ -140,13 +107,19 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/sales/FilterSalesCustomer.js"></script>
+<script src="~/js/sales/index.js"></script>
+<script src="~/js/Customer/CustomerForDD.js"></script>
 <script src="~/js/Store/LoadStoreForComboBox.js"></script>
-<script src="~/js/SubCat/LoadCategoriesToComboBox.js"></script>
-<script src="~/js/SubCat/FilterSubCatByCat.js"></script>
-<script type="text/javascript" src="~/js/ProductSearch/ProductSearchName.js"></script>
-<script src="~/js/HandleModal/getFocusElements.js"></script>
-<script src="~/js/sales/AddSales.js"></script>
-<script src="~/js/sales/SearchByNameForSales.js"></script>
-<script src="~/js/sales/SearchByBarCodeForSales.js"></script>
-<script src="~/js/sales/SearchByCodeForSales.js"></script>
-<script src="~/js/ProductSearch/ClearSearch.js"></script>
+<script src="~/js/sales/FilterSales.js"></script>
+<script src="~/js/Dates/Date.js"></script>
+<script src="~/js/sales/DeleteSales.js"></script>
+<script src="~/js/sales/MinMaxInvCode.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    function Print() {
+        window.open("SalesReport/SalesInvoices?url=" + api + "&clientID=" + clientId + "&store=" + storeId + "&fromDate=" + fromDate + "&toDate=" + toDate + "&fromCode=" + fromCode + "&toCode=" + toCode + "&isDel=" + isDeleted, "_blank");
+    }
+</script>

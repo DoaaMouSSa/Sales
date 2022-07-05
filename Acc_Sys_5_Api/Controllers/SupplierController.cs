@@ -43,7 +43,7 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteSupplier")]
         [HttpGet]
-        public bool DeleteSupplier(int id)
+        public Response<bool> DeleteSupplier(int id)
         {
             var deleted = supplierRepository.Delete(id);
             return deleted;
@@ -53,6 +53,20 @@ namespace Acc_Sys_5_Api.Controllers
         public List<dtoSupplier> GetAllSupplier()
         {
             var allsup = supplierRepository.Read();
+            return allsup;
+        }
+        [Route("SearchSupplier")]
+        [HttpGet]
+        public Response<List<dtoSupplier>> SearchSupplier(string val)
+        {
+            var allsup = supplierRepository.SearchSupplier(val);
+            return allsup;
+        }
+        [Route("GetAllSupplierForDD")]
+        [HttpGet]
+        public Response<List<dtoSupplierDD>> GetAllSupplierForDD()
+        {
+            var allsup = supplierRepository.ReadForDD();
             return allsup;
         }
     }

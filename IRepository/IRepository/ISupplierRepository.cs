@@ -11,7 +11,9 @@ namespace IRepository.IRepository
     {
         public Response<dtoSupplier> Add(dtoSupplier sup);
         public dtoSupplier Edit(dtoSupplier sup);
-        public bool Delete(int id);
+        public Response<bool> Delete(int id);
         public List<dtoSupplier> Read();
+        public Response<List<dtoSupplier>> SearchSupplier(string val);
+        public Response<List<dtoSupplierDD>> ReadForDD();
     }
 }

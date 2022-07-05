@@ -1,0 +1,126 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" id="container">
+            <div class="box-header">
+                <div class="row">
+                    <div class="row text-center">
+                        <h3 class="text-center deep-fayroz">فاتورة مشتريات رقم <u><span class="text-bold red invCode"></span></u></h3>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-1 padding-left-0">
+                        <p>المرجع:</p>
+                    </div>
+                    <div class="col-md-1 padding-right-0">
+                        <p class="text-bold invCode" id="invCode"></p>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2 padding-left-0">
+                        <p>تاريخ الفاتوره:</p>
+                    </div>
+                    <div class="col-md-2 padding-right-0">
+                        <p class="text-bold" id="invDate"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-1 padding-left-0">
+                        <p>المورد:</p>
+                    </div>
+                    <div class="col-md-1 padding-right-0">
+                        <p class="text-bold" id="invSup"></p>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-2 padding-left-0">
+                        <p>الاستلام فى مخزن:</p>
+                    </div>
+                    <div class="col-md-2 padding-right-0">
+                        <p class="text-bold" id="invStore"></p>
+                    </div>
+                </div>
+
+
+            </div><!-- /.box-header -->
+
+            <div class="box-body">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>اسم المنتج</th>
+                            <th>الكميه</th>
+                            <th>تكلفه الوحده</th>
+                            <th>الاجمالى</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchase_details_data">
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+                <br>
+                <!--totals-->
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>الاجمالى قبل الخصم:</p>
+                    </div>
+                    <div class="col-md-1">
+                        <p class="text-bold" id="invTotal"></p>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-1">
+                        <p>الخصم:</p>
+                    </div>
+                    <div class="col-md-1">
+                        <p class="text-bold" id="invDis"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>ضريبه القيمه المضافه:</p>
+                    </div>
+                    <div class="col-md-1">
+                        <p class="text-bold" id="invTax"></p>
+                    </div>
+                    <div class="col-md-4"></div>
+                    <div class="col-md-1">
+                        <p>الصافى:</p>
+                    </div>
+
+                    <div class="col-md-1">
+                        <p class="text-bold red" id="invFinalTotal"></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-2">
+                        <p>ضريبه  الخصم:</p>
+                    </div>
+                    <div class="col-md-1">
+                        <p id="invDisTax" class="text-bold"></p>
+                    </div>
+                    <div class="col-md-7"></div>
+                    <div class="col-md-2">
+                        <button class="btn-green btn-block" onclick="PrintForShowPage();">طباعة</button>
+                    </div>
+                </div>
+
+            </div><!-- /.box -->
+            <br /><br />
+            <div class="col-md-4"></div>
+            <div class="col-md-3">
+                <a class="btn-green btn-block font-16 font-600 text-center" asp-controller="Purchase"
+                   asp-action="Index"> العوده الى فواتير المشتريات </a>
+            </div>
+            <div class="col-md-3"></div>
+
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="~/js/purchase/PurchaseInvDetails.js"></script>
+    <script src="~/js/purchase/PrintCustomInv.js"></script>

@@ -2,7 +2,7 @@
 }
 .skin-yellow .sidebar a {
     color: #f6f6f6 !important;
-    font-size: large !important;
+    font-size: 15px !important;
 }
 .skin-yellow .sidebar-menu > li:hover > a, .skin-yellow .sidebar-menu > li.active > a {
     border-left-color: #baa239 !important;

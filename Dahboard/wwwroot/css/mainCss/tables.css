@@ -1,0 +1,11 @@
+﻿.tableChild {
+    width: 20%;
+    position: absolute;
+}
+table-bordered {
+    margin-bottom: 0;
+}
+.tdBlack{
+    background-color:white!important;
+    color:black!important;
+}

@@ -22,6 +22,10 @@ namespace DataLayer.Tables
         public int qty { get; set; }
         public float sales_price_one_product { get; set; }
         public float total_sales_price_one_product { get; set; }
+        public int is_deleted { get; set; }
+        public DateTime? AddedDate { get; set; }
+        public DateTime? ModifiedDate { get; set; }
+        public DateTime? DeletedDate { get; set; }
         [MaxLength(255)]
         public string notes { get; set; }
     }

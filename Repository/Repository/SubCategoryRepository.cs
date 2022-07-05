@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dto.Dto;
+
 namespace Repository.Repository
 {
     public class SubCategoryRepository : ISubCategoryRepository
@@ -27,9 +27,9 @@ namespace Repository.Repository
                 {
                     if (db.tblSubCategory.Where(c => c.cat_id == dto.cat_id).Any(c => c.subcat_name == dto.subcat_name))
                     {
-                        res.code = Static_Data.StaticApiStatus.ApiDuplicate.Code;
-                        res.status = Static_Data.StaticApiStatus.ApiDuplicate.Status;
-                        res.message = Static_Data.StaticApiStatus.ApiDuplicate.MessageAr;
+                        res.code = Static_Data.DuplicateData.DuplicateName.Code;
+                        res.status = Static_Data.DuplicateData.DuplicateName.Status;
+                        res.message = Static_Data.DuplicateData.DuplicateName.MessageAr;
                     }
                     else
                     {
@@ -60,8 +60,10 @@ namespace Repository.Repository
             return res;
         }
 
-        public bool Delete(int id)
+        public Response<bool> Delete(int id)
         {
+            Response<bool> response = new Response<bool>();
+
             bool deleted = false;
             if (id != 0)
             {
@@ -70,7 +72,7 @@ namespace Repository.Repository
                 db.SaveChanges();
                 deleted = true;
             }
-            return deleted;
+            return response;
         }
 
         public dtoSubCategoryForAdd Edit(dtoSubCategoryForAdd dto)

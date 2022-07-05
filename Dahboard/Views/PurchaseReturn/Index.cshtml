@@ -1,0 +1,127 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box" id="container">
+            <div class="box-header">
+                <div class="row">
+                    <div class="row text-center">
+                        <h3 class="text-center org" id="test">فواتير المشتريات</h3>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المورد</label>
+                        <select id="SupplierDD" onchange="FilterPurchase();" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل الموردين</option>
+                        </select>
+                    </div>
+                    <div class="col-md-2">
+                        <label class="col-form-label text-center">المخزن</label>
+                        <select id="StoreDD" onchange="FilterPurchase();" class="form-control no-padding text-center border-radius-5 border-fayroz" autofocus>
+                            <option value="0">كل المخازن</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">بدايه التاريخ</label>
+                        <input type="datetime-local" onchange="FilterPurchase();" id="fromDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfMonthBefore">
+                    </div>
+                    <div class="col-md-3">
+                        <label class="col-form-label text-center">نهايه التاريخ</label>
+                        <input type="datetime-local" onchange="FilterPurchase();" id="toDate" class="form-control no-padding text-center border-radius-5 border-fayroz dateOfNow">
+
+                    </div>
+                    <div class="col-md-2">
+                        <button onclick="getAllPurchase();" id="btnFilterPurchase" class="btn-green btn-block margin-top-25 font-16 font-600">البحث</button>
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-1">
+                        <input class="form-check-input border-fayroz hand" type="checkbox" id="chboxAllPurchase" value="option1" checked onchange="getAllPurchase();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxAllPurchase">الجميع</label>
+                    </div>
+                    <div class="col-md-1">
+                        <input class="form-check-input border-fayroz hand" type="checkbox" id="chboxNotDeletdPurchase" value="option1" onchange="GetNotDeletedPurchaseInv();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxNotDeletdPurchase">معتمد</label>
+                    </div>
+                    <div class="col-md-1">
+                        <input class="form-check-input border-fayroz hand" type="checkbox" id="chboxDeletdPurchase" value="option1" onchange="GetDeletedPurchaseInv();">
+                        <label class="form-check-label deep-fayroz hand" for="chboxDeletdPurchase">ملغى</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="col-md-2 padding-left-0">
+                            <h5 class="deep-fayroz">من</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" id="test" onchange="" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        <div class="col-md-2 padding-left-0">
+                            <h5 class="deep-fayroz">الى</h5>
+                        </div>
+                        <div class="col-md-5 padding-right-0">
+                            <input type="number" id="test" onchange="" class="form-control no-padding text-center border-radius-5 border-fayroz">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-2">
+                    <button onclick="printTbl('purchaseTbl');" id="btnPrint" class="btn-green btn-block margin-top-25 font-16 font-600">طباعه</button>
+                </div>
+            </div><!-- /.box-header -->
+
+            <div class="box-body">
+                <table class="table table-bordered table-hover" id="purchaseTbl">
+                    <thead>
+                        <tr>
+                            <th>المرجع</th>
+                            <th>المورد</th>
+                            <th>المخزن</th>
+                            <th>الاجمالى</th>
+                            <th>نوع العمليه</th>
+                            <th>التاريخ</th>
+                            <th>حذف</th>
+                        </tr>
+                    </thead>
+                    <tbody id="purchase_data">
+                    </tbody>
+                    <tfoot>
+
+                    </tfoot>
+                </table>
+
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.2/xlsx.full.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="~/js/purchase/index.js"></script>
+<script src="~/js/Supplier/SupplierForDD.js"></script>
+<script src="~/js/Store/LoadStoreForComboBox.js"></script>
+<script src="~/js/purchase/FilterPurchase.js"></script>
+<script src="~/js/Supplier/SupplierSearch.js"></script>
+<script src="~/js/purchase/DeletePurchase.js"></script>
+<script src="~/js/Dates/Date.js"></script>
+<script src="~/js/common/CheckBoxes.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.6/jspdf.plugin.autotable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/js/Print/PrintTbls.js"></script>
+<script src="~/js/purchase/FilterDeletedOnNot.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<script src="~/js/common/SearchComboBox.js"></script>

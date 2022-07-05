@@ -11,5 +11,6 @@ namespace DataLayer.Tables
         public int id { get; set; }
         public string user_name { get; set; }
         public string password { get; set; }
+        public int is_deleted { get; set; }
     }
 }

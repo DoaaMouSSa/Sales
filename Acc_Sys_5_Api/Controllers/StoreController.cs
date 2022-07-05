@@ -21,7 +21,7 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("AddStore")]
         [HttpPost]
-        public dtoStore AddStore(dtoStore dto)
+        public Response<dtoStore> AddStore(dtoStore dto)
         {
             var newStore = storeRepository.Add(dto);
             return newStore;
@@ -35,7 +35,7 @@ namespace Acc_Sys_5_Api.Controllers
         }
         [Route("DeleteStore")]
         [HttpGet]
-        public bool DeleteStore(int id)
+        public Response<bool> DeleteStore(int id)
         {
             var deleted = storeRepository.Delete(id);
             return deleted;
@@ -43,7 +43,7 @@ namespace Acc_Sys_5_Api.Controllers
         [Route("GetAllStore")]
         [HttpGet]
         //[BasicAuthentication]
-        public List<dtoStore> GetAllStore()
+        public Response<List<dtoStore>> GetAllStore()
         {
             //string Role = Thread.CurrentPrincipal.Identity.Name;
             //if (Role == "admin")
